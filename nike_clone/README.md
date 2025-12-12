@@ -24,3 +24,9 @@
 - samll text banner
 - big text slider
 - samll text slider
+
+
+- set time 
+- 1am leaning 1 hour (PHP, LARAVEL)
+- 2-4am project 
+- 8-10am not yet project
