@@ -8,15 +8,17 @@
 - favoriute
 - checkout
 - payment
+
 <!-- seyha -->
+
 - home page men
 - home page women
 - home page kids
 - home page sport
 - product detail
 
-
 <!-- props -->
+
 - buttom
 - big text banner
 - samll text banner
