@@ -22,9 +22,3 @@
 - samll text banner
 - big text slider
 - samll text slider
-
-
-gdhahajtfdj
--mmxjjsdsaghahga
-ggviohglhopjiqaalhahghlga
-gvhahgagzgagi
