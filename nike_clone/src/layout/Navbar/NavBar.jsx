@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
 import { navList } from "../../model/ListNav";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
 import { Menu } from "lucide-react";
+import { Link } from "react-router";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="lg:hidden">
         <nav className="flex items-center  justify-between px-[5%] ">
           {/* rigth */}
-          <Link>
+          <Link to="/">
             {/* logo */}
             <img src="src/assets/logo.png" className="text-black" alt="" />
           </Link>
@@ -42,7 +42,7 @@ const NavBar = () => {
       <div className="hidden sm:hidden md:hidden lg:block">
         <nav className="flex items-center  justify-between px-[5%] ">
           {/* rigth */}
-          <Link>
+          <Link to="/">
             {/* logo */}
             <img src="src/assets/logo.png" className="text-black" alt="" />
           </Link>
