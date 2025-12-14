@@ -8,23 +8,24 @@ export const listBannerImage = [
   },
   {
     image: "/src/assets/bannerHome/banner2.jpg",
-    title: "gits for every game",
-    subTitle: "keep them feeling their best no matter move,",
+    title: "show stoppers",
+    subTitle:
+      "Inspired by the last line of defense on the pitch, designsed to headline erverywhere",
     link: "",
-    btnName: "Shop Gits",
+    btnName: "Shop",
   },
   {
     image: "/src/assets/bannerHome/banner3.jpg",
-    title: "gits for every game",
-    subTitle: "keep them feeling their best no matter move,",
+    title: "here to stay",
+    subTitle: "Rep your legacy, the LUS way",
     link: "",
-    btnName: "Shop Gits",
+    btnName: "Shop",
   },
   {
     image: "/src/assets/bannerHome/banner4.jpg",
-    title: "gits for every game",
-    subTitle: "keep them feeling their best no matter move,",
+    title: "tailored for all-day comfort",
+    subTitle: "The 24.7 collection is made to  move all day.",
     link: "",
-    btnName: "Shop Gits",
+    btnName: "Shop",
   },
 ];

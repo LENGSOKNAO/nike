@@ -3,6 +3,9 @@ import { listBannerImage } from "../../model/ListBannerImage";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { FaPlay } from "react-icons/fa6";
 import { CgPlayButton, CgPlayPause } from "react-icons/cg";
+import BigText from "../props/text/BigText";
+import SmallText from "../props/text/SmallText";
+import BtnWith from "../props/btn/BtnWith";
 
 const HomeBanner = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -26,7 +29,7 @@ const HomeBanner = () => {
   useEffect(() => {
     clearTimeout(timer.current);
     if (autoPlay) {
-      const duration = 5000; // 5 seconds for smoother transition
+      const duration = 5000;
       startTimeRef.current =
         Date.now() - (progressRef.current * duration) / 100;
 
@@ -38,7 +41,7 @@ const HomeBanner = () => {
         setProgress(currentProgress);
 
         if (currentProgress < 100) {
-          timer.current = setTimeout(animate, 50); // Update every 50ms for smooth animation
+          timer.current = setTimeout(animate, 50);
         } else {
           next();
         }
@@ -60,6 +63,7 @@ const HomeBanner = () => {
   const styleText = "text-xl font-bold uppercase text-white";
   return (
     <div className="">
+      {/* banner bar */}
       <div className="relative h-20">
         <img src="/src/assets/bannerHome/bannerTop.jpg" alt="" />
         <div className="flex items-center justify-between px-[2%] absolute inset-0">
@@ -76,6 +80,7 @@ const HomeBanner = () => {
           </div>
         </div>
       </div>
+      {/* banner */}
       <div className="overflow-hidden h-[75vh] relative  bg-white">
         <div
           className="flex transition-transform duration-800 ease-in-out h-full  "
@@ -98,15 +103,12 @@ const HomeBanner = () => {
                   alt=""
                 />
                 {/* data of banner */}
-                <div className="absolute bottom-15 text-center text-white w-[80vh]">
-                  <h2 className="text-7xl font-bigText uppercase ">
-                    {" "}
-                    {e.title}{" "}
-                  </h2>
-                  <p className="text-md font-medium py-5"> {e.subTitle} </p>
-                  <button className="bg-white text-black px-4 py-1.5 rounded-4xl text-sm font-medium ">
-                    {e.btnName}
-                  </button>
+                <div className="absolute bottom-15 text-center text-white w-[100vh]">
+                  <BigText text={e.title} />
+                  <div className="py-5">
+                    <SmallText text={e.subTitle} />
+                  </div>
+                  <BtnWith text={e.btnName} />
                 </div>
               </div>
             </>
