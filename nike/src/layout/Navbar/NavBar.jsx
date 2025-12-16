@@ -8,10 +8,10 @@ const NavBar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <header>
+    <header className="sticky top-0 z-10 bg-white">
       {/* screen md */}
-      <div className="lg:hidden">
-        <nav className="flex items-center justify-between px-[5%] ">
+      <nav className="lg:hidden">
+        <div className="flex items-center justify-between px-[5%] ">
           {/* rigth */}
           <Link to="/">
             {/* logo */}
@@ -36,11 +36,11 @@ const NavBar = () => {
               </div>
             )}
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
       {/* screen full */}
-      <div className="hidden sm:hidden md:hidden lg:block  ">
-        <nav className="flex items-center justify-between px-[2%] py-2 ">
+      <nav className="hidden sm:hidden md:hidden lg:block  ">
+        <div className="flex items-center justify-between px-[2%] py-2 ">
           {/* rigth */}
           <Link to="/" className="bg-transparent w-20">
             {/* logo */}
@@ -68,8 +68,8 @@ const NavBar = () => {
             <CiHeart />
             <CiBag1 />
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
   );
 };

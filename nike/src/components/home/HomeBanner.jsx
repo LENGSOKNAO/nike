@@ -20,6 +20,7 @@ const HomeBanner = () => {
     progressRef.current = 0;
     setProgress(0);
   };
+
   const prev = () => {
     setCurrentImage((n) => (n === 0 ? listBannerImage.length - 1 : n - 1));
     progressRef.current = 0;
