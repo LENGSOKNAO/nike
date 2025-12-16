@@ -3,27 +3,9 @@ import { Link } from "react-router";
 import SmallText from "../../components/props/text/SmallText";
 import { dataFooter2 } from "../../model/ListFooter2";
 import { dataFooter3 } from "../../model/ListFooter3";
+import { listFooter } from "../../model/ListFooter";
 
 const Footer = () => {
-  const listFooter = [
-    {
-      title: "Find a Store",
-      links: "",
-    },
-    {
-      title: "Help",
-      links: "",
-    },
-    {
-      title: "Join Us",
-      links: "",
-    },
-    {
-      title: "Sign In",
-      links: "",
-    },
-  ];
-
   return (
     <footer className="my-10">
       {/* footer 1 */}

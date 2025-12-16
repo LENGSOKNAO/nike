@@ -26,17 +26,21 @@ const GridBannerTree = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-3 gap-2  px-[2%] py-20 ">
-      {listData.map((e, i) => (
-        <div key={i}>
-          <BannerCart
-            image={e.image}
-            nameBtn={e.btn}
-            bigText={e.title}
-            smallText={e.subTitile}
-          />
-        </div>
-      ))}
+    <div className="flex justify-center">
+      <div className="flex items-center gap-3 px-[1%] py-20 overflow-x-scroll">
+        {listData.map((e, i) => (
+          <div key={i}>
+            <div className="w-150 ">
+              <BannerCart
+                image={e.image}
+                nameBtn={e.btn}
+                bigText={e.title}
+                smallText={e.subTitile}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

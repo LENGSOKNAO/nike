@@ -8,7 +8,7 @@ const NavBar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <header className="sticky top-0 z-10 bg-white">
+    <header className="sticky top-0 z-2 bg-white">
       {/* screen md */}
       <nav className="lg:hidden">
         <div className="flex items-center justify-between px-[5%] ">
