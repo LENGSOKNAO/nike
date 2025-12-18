@@ -1,35 +1,100 @@
 import React, { useState } from "react";
 import { navList } from "../../model/ListNav";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
-import { Menu } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 
 const NavBar = () => {
-  const [nav, setNav] = useState(false);
+  const [isMenu, setIsMenu] = useState(false);
+  const [isListOpen, setIsListOpen] = useState(false);
+
+  const styleSmallBar =
+    "absolute top-0 right-0 bottom-0 w-85 h-screen bg-white px-5";
+  const btnHover = "hover:bg-gray-200 p-2 rounded-4xl cursor-pointer";
 
   return (
-    <header className="sticky top-0 z-2 bg-white">
+    <header className="sticky top-0 z-2 bg-white ">
       {/* screen md */}
-      <nav className="lg:hidden">
-        <div className="flex items-center justify-between px-[5%] ">
+      <nav className="lg:hidden relative ">
+        <div className="flex items-center justify-between px-[2%] py-2">
           {/* rigth */}
           <Link to="/">
             {/* logo */}
-            <img src="src/assets/logo.png" className="text-black" alt="" />
+            <img src="src/assets/logo.png" className="w-20" alt="" />
           </Link>
 
           {/* left */}
-          <div className="flex items-center gap-2 text-2xl">
+          <div className="flex items-center gap-2 text-2xl ">
             <CiSearch />
             <CiHeart />
             <CiBag1 />
-            <Menu onClick={() => setNav((e) => !e)} />
-            {nav && (
-              <div className="">
+            <Menu onClick={() => setIsMenu((e) => !e)} />
+            {isMenu && (
+              <div className={styleSmallBar}>
+                <div className="flex items-center justify-end py-5">
+                  <button
+                    onClick={() => setIsMenu((e) => !e)}
+                    className={btnHover}
+                  >
+                    <X />
+                  </button>
+                </div>
                 <ul>
                   {navList.map((e, i) => (
                     <>
-                      <li> {e.mainLink} </li>
+                      <li className="flex items-center justify-between">
+                        <button
+                          onClick={() =>
+                            setIsListOpen(isListOpen === i ? null : i)
+                          }
+                          className="text-2xl font-medium py-2 cursor-pointer "
+                        >
+                          {e.mainLink}
+                        </button>
+                        {isListOpen === i && (
+                          <div className="">
+                            isListOpen && (
+                            <div className={styleSmallBar}>
+                              <div className="flex justify-between items-center py-5">
+                                <button
+                                  onClick={() => setIsListOpen((e) => !e)}
+                                  className="flex items-center text-lg cursor-pointer"
+                                >
+                                  <ChevronLeft className="w-6" />
+                                  All
+                                </button>
+                                <div
+                                  onClick={() => setIsMenu((e) => !e)}
+                                  className={btnHover}
+                                >
+                                  <X />
+                                </div>
+                              </div>
+
+                              {e.subLink.map((e, idx) => (
+                                <li
+                                  key={idx}
+                                  className="py-2 pl-4 text-lg font-normal"
+                                >
+                                  <h2 className="text-xl font-medium pb-5">
+                                    {e.mainLinkSub}
+                                  </h2>
+                                  {e.tSub.map((sub, idSub) => (
+                                    <li
+                                      key={idSub}
+                                      className="text-sm font-medium text-gray-600 hover:text-black py-2"
+                                    >
+                                      <Link to={sub.link}>{sub.name}</Link>
+                                    </li>
+                                  ))}
+                                </li>
+                              ))}
+                            </div>
+                            )
+                          </div>
+                        )}
+                        <ChevronRight />
+                      </li>
                     </>
                   ))}
                 </ul>

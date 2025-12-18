@@ -26,11 +26,11 @@ const GridBannerTree = () => {
     },
   ];
   return (
-    <div className="flex justify-center">
-      <div className="flex items-center gap-3 px-[1%] py-20 overflow-x-scroll">
+    <div className=" py-20 ">
+      <div className="lg:grid grid-cols-3 flex items-center gap-3 px-[1%] overflow-x-scroll lg:overflow-hidden">
         {listData.map((e, i) => (
           <div key={i}>
-            <div className="w-150 ">
+            <div className="w-110 lg:w-full">
               <BannerCart
                 image={e.image}
                 nameBtn={e.btn}

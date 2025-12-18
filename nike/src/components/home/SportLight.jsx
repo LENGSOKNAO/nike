@@ -6,12 +6,13 @@ import { listDataShortLight } from "../../model/DataShortLight";
 const SportLight = () => {
   return (
     <div className="">
-      <div className="flex flex-col items-center justify-center ">
+      <div className="text-center px-[10%]">
         <BigText text="SORTLIGHT" />
         <div className="py-5">
           <SmallText text="Classic silhouettes and cutting-edge innovation to build your game from the ground up." />
         </div>
-        <div className="grid grid-cols-8 gap-x-25 gap-y-10 place-items-top mt-15 ">
+
+        <div className="grid grid-cols-4 place-items-center md:grid-cols-8 md:gap-x-10 lg:gap-x-15 xl:gap-x-25 gap-y-10 place-items-top mt-15">
           {listDataShortLight.map((e, i) => (
             <div className="w-18 text-center cursor-pointer" key={i}>
               <img src={e.image} className=" object-cover " alt="" />
