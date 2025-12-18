@@ -116,7 +116,7 @@ const HomeBanner = () => {
       <div className="relative h-20 ">
         <img
           src="/src/assets/bannerHome/bannerTop.jpg"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover  "
           alt=""
         />
         <div className="flex items-center justify-between px-[2%] absolute inset-0">
@@ -126,7 +126,11 @@ const HomeBanner = () => {
           <div className={styleText}>
             extra 25% off <br /> select style
           </div>
-          <img src="/src/assets/logo.png" className="text-white w-30" alt="" />
+          <img
+            src="/src/assets/logobartop.png"
+            className="text-white w-20 hidden lg:block"
+            alt=""
+          />
           <div className={`${styleText} text-end`}>
             code: <br />
             strong

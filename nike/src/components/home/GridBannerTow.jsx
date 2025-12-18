@@ -19,7 +19,7 @@ const GridBannerTow = () => {
   ];
 
   return (
-    <div className="grid sm:grid-cols-2    ">
+    <div className="grid sm:grid-cols-2 overflow-hidden  ">
       {listData.map((e, i) => (
         <div key={i}>
           <BannerCart
