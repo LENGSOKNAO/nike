@@ -122,7 +122,9 @@ const NavBar = () => {
                                   </div>
                                 </div>
                                 <h2 className="text-2xl font-medium py-4 cursor-pointer">
-                                  <Link to={e.link}>{e.title}</Link>
+                                  <Link to={e.link} onClick={closeSamllScreen}>
+                                    {e.title}
+                                  </Link>
                                 </h2>
 
                                 {e.list.map((e, idx) => (

@@ -3,13 +3,14 @@ import SmallText from "../../components/props/text/SmallText";
 import { dataFooter2 } from "../../model/ListFooter2";
 import { dataFooter3 } from "../../model/ListFooter3";
 import { listFooter } from "../../model/ListFooter";
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
     <footer className="my-10">
       {/* footer 1 */}
       <div className="flex flex-col items-center justify-center">
-        <img src="/src/assets/logo.png" className="w-30" alt="" />
+        <img src={logo} className="w-30" alt="" />
         <div className="flex gap-10">
           {listFooter.map((e, i) => (
             <div className="" key={i}>
