@@ -91,7 +91,7 @@ const NavBar = () => {
                     <ul>
                       {DataNavlist.map((e, i) => (
                         <>
-                          <li className="flex items-center justify-between">
+                          <li className="flex items-center justify-between ">
                             <button
                               onClick={() =>
                                 setIsListOpen(isListOpen === i ? null : i)
@@ -103,15 +103,15 @@ const NavBar = () => {
                             <ChevronRight />
                           </li>
                           {isListOpen === i && (
-                            <div className="">
-                              isListOpen && (
+                            <div className="fixed inset-0 z-50 ">
                               <div className={styleSmallBar}>
+                                {/* Header - fixed at top */}
                                 <div className="flex justify-between items-center py-5">
                                   <button
-                                    onClick={() => setIsListOpen((e) => !e)}
+                                    onClick={() => setIsListOpen(null)}
                                     className="flex items-center text-lg cursor-pointer"
                                   >
-                                    <ChevronLeft className="w-6" />
+                                    <ChevronLeft className="w-6 mr-2" />
                                     All
                                   </button>
                                   <div
@@ -121,59 +121,67 @@ const NavBar = () => {
                                     <X />
                                   </div>
                                 </div>
-                                <h2 className="text-2xl font-medium py-4 cursor-pointer">
-                                  <Link to={e.link} onClick={closeSamllScreen}>
-                                    {e.title}
-                                  </Link>
-                                </h2>
 
-                                {e.list.map((e, idx) => (
-                                  <div
-                                    key={idx}
-                                    className="my-2 text-lg font-normal"
-                                  >
-                                    {e.listSub.map((sub, i) => (
-                                      <div
-                                        key={i}
-                                        className="text-xl font-medium cursor-pointer "
-                                      >
-                                        <h2
-                                          onClick={() =>
-                                            setIsSubMenu(
-                                              isSubMenu === `${idx}-${i}`
-                                                ? null
-                                                : `${idx}-${i}`
-                                            )
-                                          }
-                                          className="flex items-center py-1 justify-between"
+                                {/* THIS is the scrollable area - everything below header scrolls */}
+                                <div className="h-full overflow-y-auto  pb-20">
+                                  <h2 className="text-2xl font-medium py-4 cursor-pointer">
+                                    <Link
+                                      to={e.link}
+                                      onClick={closeSamllScreen}
+                                    >
+                                      {e.title}
+                                    </Link>
+                                  </h2>
+
+                                  {e.list.map((category, idx) => (
+                                    <div
+                                      key={idx}
+                                      className="my-2 text-lg font-normal"
+                                    >
+                                      {category.listSub.map((sub, subIdx) => (
+                                        <div
+                                          key={subIdx}
+                                          className="text-xl font-medium cursor-pointer"
                                         >
-                                          {sub.title}
-                                          {isSubMenu === `${idx}-${i}` ? (
-                                            <ChevronDown />
-                                          ) : (
-                                            <ChevronRight />
+                                          <h2
+                                            onClick={() =>
+                                              setIsSubMenu(
+                                                isSubMenu === `${idx}-${subIdx}`
+                                                  ? null
+                                                  : `${idx}-${subIdx}`
+                                              )
+                                            }
+                                            className="flex items-center py-1 justify-between"
+                                          >
+                                            {sub.title}
+                                            {isSubMenu ===
+                                            `${idx}-${subIdx}` ? (
+                                              <ChevronDown />
+                                            ) : (
+                                              <ChevronRight />
+                                            )}
+                                          </h2>
+
+                                          {isSubMenu === `${idx}-${subIdx}` && (
+                                            <div className="ml-4 mt-2">
+                                              {sub.listSub.map(
+                                                (item, idSub) => (
+                                                  <div
+                                                    key={idSub}
+                                                    className="text-sm font-medium text-gray-600 hover:text-black py-2"
+                                                  >
+                                                    <h2>{item.name}</h2>
+                                                  </div>
+                                                )
+                                              )}
+                                            </div>
                                           )}
-                                        </h2>
-                                        {isSubMenu === `${idx}-${i}` && (
-                                          <div className="">
-                                            {sub.listSub.map((sub, idSub) => (
-                                              <div
-                                                key={idSub}
-                                                className="text-sm font-medium text-gray-600 hover:text-black py-2"
-                                              >
-                                                <h2 className="flex items-center justify-between">
-                                                  {sub.name}
-                                                </h2>
-                                              </div>
-                                            ))}
-                                          </div>
-                                        )}
-                                      </div>
-                                    ))}
-                                  </div>
-                                ))}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                              )
                             </div>
                           )}
                         </>
