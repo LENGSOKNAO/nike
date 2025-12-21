@@ -6,6 +6,7 @@ import { CgPlayButton, CgPlayPause } from "react-icons/cg";
 import BigText from "../props/text/BigText";
 import SmallText from "../props/text/SmallText";
 import BtnWith from "../props/btn/BtnWith";
+import logoBanner from "../../assets/bannerHome/bannerTop.jpg"
 
 const HomeBanner = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -115,7 +116,7 @@ const HomeBanner = () => {
       {/* banner bar */}
       <div className="relative h-20 ">
         <img
-          src="/src/assets/bannerHome/bannerTop.jpg"
+          src={logoBanner}
           className="h-full w-full object-cover  "
           alt=""
         />
