@@ -1,16 +1,18 @@
 import BannerCart from "../props/cart/BannerCart";
+import bann from "@/assets/bannerHome/bann.jpg";
+import ba2 from "@/assets/bannerHome/ba2.jpg";
 
 const GridBannerTow = () => {
   const listData = [
     {
-      image: "/src/assets/bannerHome/bann.jpg",
+      image: bann,
       title: "Unleash Your Powser",
       subTitile: "Nike x Stranger Things",
       btn: "Shop",
       Link: "",
     },
     {
-      image: "/src/assets/bannerHome/ba2.jpg",
+      image: ba2,
       title: "Low Light, Hight Voltage",
       subTitile: "Air jordan 11 'Gamma'",
       btn: "Shop",

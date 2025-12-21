@@ -1,30 +1,34 @@
 import React from "react";
 import BannerCart from "../props/cart/BannerCart";
+import gImg from "../assets/bannerHome/g.jpg";
+import nikeImg from "../assets/bannerHome/nike.jpg";
+import slImg from "../assets/bannerHome/sl.jpg";
 
 const GridBannerTree = () => {
   const listData = [
     {
-      image: "/src/assets/bannerHome/g.jpg",
+      image: gImg,
       title: "",
       subTitile: "",
       btn: "Shop FootBall",
       Link: "",
     },
     {
-      image: "/src/assets/bannerHome/nike.jpg",
+      image: nikeImg,
       title: "",
       subTitile: "",
       btn: "Shop Basketball",
       Link: "",
     },
     {
-      image: "/src/assets/bannerHome/sl.jpg",
+      image: slImg,
       title: "",
       subTitile: "",
       btn: "Shop Running",
       Link: "",
     },
   ];
+
   return (
     <div className=" py-20 ">
       <div className="lg:grid grid-cols-3 flex items-center gap-3 px-[1%] overflow-x-scroll lg:overflow-hidden">

@@ -3,6 +3,11 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { GrNext } from "react-icons/gr";
 import { Link } from "react-router";
 import BannerCart from "../props/cart/BannerCart";
+import sp1 from "../assets/menpicsey/slider/sp1.jpg";
+import sp2 from "../assets/menpicsey/slider/sp2.jpg";
+import sp3 from "../assets/menpicsey/slider/sp3.jpg";
+import sp4 from "../assets/menpicsey/slider/sp4.jpg";
+import sp5 from "../assets/menpicsey/slider/sp5.jpg";
 
 const IconButton = ({ children }) => (
   <div
@@ -12,12 +17,12 @@ const IconButton = ({ children }) => (
     {children}
   </div>
 );
-const Sport = [
-  { img: "/src/assets/menpicsey/slider/sp1.jpg", namebtn: "shop", link: "" },
-  { img: "/src/assets/menpicsey/slider/sp2.jpg", namebtn: "shop", link: "" },
-  { img: "/src/assets/menpicsey/slider/sp3.jpg", namebtn: "shop", link: "" },
-  { img: "/src/assets/menpicsey/slider/sp4.jpg", namebtn: "shop", link: "" },
-  { img: "/src/assets/menpicsey/slider/sp5.jpg", namebtn: "shop", link: "" },
+export const Sport = [
+  { img: sp1, namebtn: "shop", link: "" },
+  { img: sp2, namebtn: "shop", link: "" },
+  { img: sp3, namebtn: "shop", link: "" },
+  { img: sp4, namebtn: "shop", link: "" },
+  { img: sp5, namebtn: "shop", link: "" },
 ];
 const SportMen = () => {
   const [slideShow, setslideShow] = useState(0);
