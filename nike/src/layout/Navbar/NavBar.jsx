@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { navList } from "../../model/ListNav";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
-import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Link } from "react-router";
+import { DataNavlist } from "../../model/DataNavlist";
 
 const NavBar = () => {
   const [isMenu, setIsMenu] = useState(false);
+  const [isSubMenu, setIsSubMenu] = useState(false);
   const [isListOpen, setIsListOpen] = useState(false);
+  const [isHoverMenu, setIsHoverMenu] = useState(false);
 
   const styleSmallBar =
     "absolute top-0 right-0 bottom-0 w-85 h-screen bg-white px-5";
@@ -40,7 +43,7 @@ const NavBar = () => {
                   </button>
                 </div>
                 <ul>
-                  {navList.map((e, i) => (
+                  {DataNavlist.map((e, i) => (
                     <>
                       <li className="flex items-center justify-between">
                         <button
@@ -49,52 +52,82 @@ const NavBar = () => {
                           }
                           className="text-2xl font-medium py-2 cursor-pointer "
                         >
-                          {e.mainLink}
+                          {e.title}
                         </button>
-                        {isListOpen === i && (
-                          <div className="">
-                            isListOpen && (
-                            <div className={styleSmallBar}>
-                              <div className="flex justify-between items-center py-5">
-                                <button
-                                  onClick={() => setIsListOpen((e) => !e)}
-                                  className="flex items-center text-lg cursor-pointer"
-                                >
-                                  <ChevronLeft className="w-6" />
-                                  All
-                                </button>
-                                <div
-                                  onClick={() => setIsMenu((e) => !e)}
-                                  className={btnHover}
-                                >
-                                  <X />
-                                </div>
-                              </div>
-
-                              {e.subLink.map((e, idx) => (
-                                <li
-                                  key={idx}
-                                  className="py-2 pl-4 text-lg font-normal"
-                                >
-                                  <h2 className="text-xl font-medium pb-5">
-                                    {e.mainLinkSub}
-                                  </h2>
-                                  {e.tSub.map((sub, idSub) => (
-                                    <li
-                                      key={idSub}
-                                      className="text-sm font-medium text-gray-600 hover:text-black py-2"
-                                    >
-                                      <Link to={sub.link}>{sub.name}</Link>
-                                    </li>
-                                  ))}
-                                </li>
-                              ))}
-                            </div>
-                            )
-                          </div>
-                        )}
                         <ChevronRight />
                       </li>
+                      {isListOpen === i && (
+                        <div className="">
+                          isListOpen && (
+                          <div className={styleSmallBar}>
+                            <div className="flex justify-between items-center py-5">
+                              <button
+                                onClick={() => setIsListOpen((e) => !e)}
+                                className="flex items-center text-lg cursor-pointer"
+                              >
+                                <ChevronLeft className="w-6" />
+                                All
+                              </button>
+                              <div
+                                onClick={() => setIsMenu((e) => !e)}
+                                className={btnHover}
+                              >
+                                <X />
+                              </div>
+                            </div>
+                            <h2 className="text-2xl font-medium py-4 cursor-pointer">
+                              {e.title}
+                            </h2>
+
+                            {e.list.map((e, idx) => (
+                              <div
+                                key={idx}
+                                className="my-2 text-lg font-normal"
+                              >
+                                {e.listSub.map((sub, i) => (
+                                  <div
+                                    key={i}
+                                    className="text-xl font-medium cursor-pointer "
+                                  >
+                                    <h2
+                                      onClick={() =>
+                                        setIsSubMenu(
+                                          isSubMenu === `${idx}-${i}`
+                                            ? null
+                                            : `${idx}-${i}`
+                                        )
+                                      }
+                                      className="flex items-center py-1 justify-between"
+                                    >
+                                      {sub.title}
+                                      {isSubMenu === `${idx}-${i}` ? (
+                                        <ChevronDown />
+                                      ) : (
+                                        <ChevronRight />
+                                      )}
+                                    </h2>
+                                    {isSubMenu === `${idx}-${i}` && (
+                                      <div className="">
+                                        {sub.listSub.map((sub, idSub) => (
+                                          <div
+                                            key={idSub}
+                                            className="text-sm font-medium text-gray-600 hover:text-black py-2"
+                                          >
+                                            <h2 className="flex items-center justify-between">
+                                              {sub.name}
+                                            </h2>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                          )
+                        </div>
+                      )}
                     </>
                   ))}
                 </ul>
@@ -118,10 +151,45 @@ const NavBar = () => {
           {/* center  */}
           <div className="">
             <ul className="flex gap-5 text-md font-semibold">
-              {navList.map((e, i) => (
+              {DataNavlist.map((e, i) => (
                 <>
-                  <li key={i}>
-                    <Link to={e.link}> {e.mainLink} </Link>
+                  <li
+                    key={i}
+                    onMouseEnter={() =>
+                      setIsHoverMenu(isHoverMenu === i ? i : i)
+                    }
+                  >
+                    <Link to={e.link} className="z-10">
+                      {" "}
+                      {e.title}{" "}
+                    </Link>
+                    {isHoverMenu === i && (
+                      <div className="bg-white absolute top-0 left-0 right-0 z-[-1] flex justify-center py-10">
+                        <div
+                          onMouseLeave={() => setIsHoverMenu(false)}
+                          className="flex justify-center gap-[10%] w-[80%] mt-10"
+                        >
+                          {e.list.map((e, i) => (
+                            <div key={i} className="">
+                              {e.listSub.map((e, i) => (
+                                <div key={i} className="pb-10">
+                                  <h2 className="text-md font-medium pb-2">
+                                    <Link>{e.title}</Link>
+                                  </h2>
+                                  {e.listSub.map((e, i) => (
+                                    <div key={i}>
+                                      <p className="text-sm text-gray-600 hover:text-black py-1 font-medium">
+                                        <Link>{e.name}</Link>
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </li>
                 </>
               ))}
