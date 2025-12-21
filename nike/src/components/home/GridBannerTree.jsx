@@ -1,8 +1,8 @@
 import React from "react";
 import BannerCart from "../props/cart/BannerCart";
-import gImg from "../assets/bannerHome/g.jpg";
-import nikeImg from "../assets/bannerHome/nike.jpg";
-import slImg from "../assets/bannerHome/sl.jpg";
+import gImg from "../../assets/bannerHome/g.jpg";
+import nikeImg from "../../assets/bannerHome/nike.jpg";
+import slImg from "../../assets/bannerHome/sl.jpg";
 
 const GridBannerTree = () => {
   const listData = [

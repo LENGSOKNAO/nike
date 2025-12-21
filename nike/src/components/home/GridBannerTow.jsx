@@ -1,6 +1,6 @@
 import BannerCart from "../props/cart/BannerCart";
-import bann from "@/assets/bannerHome/bann.jpg";
-import ba2 from "@/assets/bannerHome/ba2.jpg";
+import bann from "../../assets/bannerHome/bann.jpg";
+import ba2 from "../../assets/bannerHome/ba2.jpg";
 
 const GridBannerTow = () => {
   const listData = [

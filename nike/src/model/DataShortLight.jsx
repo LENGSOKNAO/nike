@@ -9,11 +9,11 @@ import img7 from "../assets/listSportLight/image7.png";
 import img8 from "../assets/listSportLight/image8.png";
 import img9 from "../assets/listSportLight/image9.png";
 import img22 from "../assets/listSportLight/image22.png";
+import img33 from "../assets/listSportLight/33image.png";
 import img44 from "../assets/listSportLight/image44.png";
 import img55 from "../assets/listSportLight/image55.png";
 import img66 from "../assets/listSportLight/image66.png";
 import img99 from "../assets/listSportLight/image99.png";
-import img33 from "../assets/listSportLight/33image.png";
 
 export const listDataShortLight = [
   { image: img0, title: "Fan Gear", links: "" },

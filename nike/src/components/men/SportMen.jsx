@@ -3,11 +3,11 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { GrNext } from "react-icons/gr";
 import { Link } from "react-router";
 import BannerCart from "../props/cart/BannerCart";
-import sp1 from "../assets/menpicsey/slider/sp1.jpg";
-import sp2 from "../assets/menpicsey/slider/sp2.jpg";
-import sp3 from "../assets/menpicsey/slider/sp3.jpg";
-import sp4 from "../assets/menpicsey/slider/sp4.jpg";
-import sp5 from "../assets/menpicsey/slider/sp5.jpg";
+import sp1 from "../../assets/menpicsey/slider/sp1.jpg";
+import sp2 from "../../assets/menpicsey/slider/sp2.jpg";
+import sp3 from "../../assets/menpicsey/slider/sp3.jpg";
+import sp4 from "../../assets/menpicsey/slider/sp4.jpg";
+import sp5 from "../../assets/menpicsey/slider/sp5.jpg";
 
 const IconButton = ({ children }) => (
   <div
