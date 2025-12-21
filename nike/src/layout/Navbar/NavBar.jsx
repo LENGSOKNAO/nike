@@ -5,6 +5,9 @@ import { Link } from "react-router";
 import { DataNavlist } from "../../model/DataNavlist";
 import { DataPopular } from "../../model/popular";
 import { listFooter } from "../../model/ListFooter";
+import logo from "../assets/logo.png";
+
+<img src={logo} className="w-20" alt="logo" />;
 
 const NavBar = () => {
   const [isMenu, setIsMenu] = useState(false);
@@ -66,7 +69,7 @@ const NavBar = () => {
             {/* rigth */}
             <Link to="/">
               {/* logo */}
-              <img src="/assets/logo.png" className="w-20" alt="" />
+              <img src={logo} className="w-20" alt="" />
             </Link>
 
             {/* left */}
