@@ -1,7 +1,7 @@
 export const DataNavlist = [
   {
     title: "Men",
-    link: "men",
+    link: "/men",
     list: [
       // Column 1: Limited Time & New & Featured
       {
