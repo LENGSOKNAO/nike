@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { navList } from "../../model/ListNav";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
 import { ChevronDown, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Link } from "react-router";
@@ -197,7 +196,12 @@ const NavBar = () => {
           </div>
           {/* left */}
           <div className="flex items-center gap-2 text-2xl">
-            <CiSearch />
+            <div className=" flex items-center bg-gray-100 hover:bg-gray-200 w-30 rounded-full ">
+              <div className="bg-gray-100 hover:bg-gray-300 rounded-full p-1 cursor-pointer">
+                <CiSearch />
+              </div>
+              <p className="text-sm font-medium px-3">Search</p>
+            </div>
             <CiHeart />
             <CiBag1 />
           </div>
