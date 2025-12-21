@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { DataNavlist } from "../../model/DataNavlist";
 import { DataPopular } from "../../model/popular";
 import { listFooter } from "../../model/ListFooter";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 <img src={logo} className="w-20" alt="logo" />;
 
