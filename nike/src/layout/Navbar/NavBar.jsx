@@ -66,7 +66,7 @@ const NavBar = () => {
             {/* rigth */}
             <Link to="/">
               {/* logo */}
-              <img src="/src/assets/logo.png" className="w-20" alt="" />
+              <img src="/assets/logo.png" className="w-20" alt="" />
             </Link>
 
             {/* left */}
