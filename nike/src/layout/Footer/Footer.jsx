@@ -25,7 +25,7 @@ const Footer = () => {
       {/* footer 1 */}
       <div className="px-5">
         <div className="flex justify-center">
-          <img src={logo} className="w-15 md:w-30 py-5" alt="" />
+          <img src={logo} className="w-25 md:w-30 py-10" alt="" />
         </div>
         <div className="md:flex flex-col items-center justify-center">
           <div className="flex gap-10">
@@ -149,7 +149,7 @@ const Footer = () => {
       </div>
       {/* name of developer */}
       <h2 className="text-sm text-black/60 py-2 px-4 w-[70%]">
-        © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
+        © 2026 Soknao and Seyha. Developed by Soknao and Seyha. All rights
         reserved
       </h2>
     </footer>
