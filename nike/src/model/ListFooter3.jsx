@@ -35,4 +35,14 @@ export const dataFooter3 = [
       { title: "Accessibility", links: "/accessibility" },
     ],
   },
+  {
+    menTitle: "Promotions & Discounts",
+    list: [
+      { title: "Student", links: "/student" },
+      { title: "Military", links: "/military" },
+      { title: "Teacher", links: "/teacher" },
+      { title: "First Responders & Medical Professionals", links: "/" },
+      { title: "Birthday", links: "/birthday" },
+    ],
+  },
 ];

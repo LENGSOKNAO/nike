@@ -5,9 +5,12 @@ import { dataFooter3 } from "../../model/ListFooter3";
 import { listFooter } from "../../model/ListFooter";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
+import { BiWorld } from "react-icons/bi";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Footer = () => {
   const [isMenu, setIsMenu] = useState(false);
+  const [Menu, setMenu] = useState(false);
 
   const openMenu = (e) => {
     setIsMenu(isMenu === e ? null : e);
@@ -20,7 +23,7 @@ const Footer = () => {
   return (
     <footer className="">
       {/* footer 1 */}
-      <div className="md:flex flex-col items-center justify-center">
+      <div className="px-5 md:flex flex-col items-center justify-center">
         <img src={logo} className="w-20 md:w-30 py-2" alt="" />
         <div className="flex gap-10">
           {listFooter.map((e, i) => (
@@ -58,7 +61,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div onMouseLeave={closeMenu} className="md:hidden py-5">
+        <div onMouseLeave={closeMenu} className="md:hidden p-5">
           {dataFooter2.map((e, i) => (
             <div className="">
               <h2
@@ -68,26 +71,83 @@ const Footer = () => {
                 {e.menTitle}
               </h2>
               <div className="px-5">
-                {isMenu === i && (
-                  <div className="">
-                    {e.list.map((e, i) => (
-                      <div className="">
-                        <h2 className="text-md py-2">{e.title}</h2>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div
+                  className={`overflow-hidden duration-700 ease-in-out transition-all
+                  ${isMenu === i ? "max-h-500" : "max-h-0"}
+                  `}
+                >
+                  {e.list.map((e, i) => (
+                    <div className="">
+                      <h2 className="text-md py-2">{e.title}</h2>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </>
-      <div className="border-t-1 border-black/10 ">
-        <h2 className="text-sm text-black/60 py-2 px-4">
-          © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
-          reserved
-        </h2>
+      {/* broder  */}
+      <div className=" hidden md:block border-t-1 border-black/10 "></div>
+      {/* footer 3 */}
+      <div className="hidden md:block">
+        <div className="grid grid-cols-5 justify-items-center  py-10">
+          {dataFooter3.map((e, i) => (
+            <div className="">
+              <h2 className="text-md font-medium pb-2">{e.menTitle}</h2>
+              <div className="">
+                {e.list.map((e, i) => (
+                  <div className="py-1">
+                    <span className="text-sm font-medium text-black/60 hover:text-black">
+                      <Link>{e.title}</Link>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="text-black/50 text-sm font-medium">
+            <div className="flex justify-center items-center">
+              <BiWorld />
+              <span className="text-black/70 text-sm">Cambodia</span>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="md:hidden px-5">
+        <div className="border-t-1 border-black/10">
+          {dataFooter3.map((e, i) => (
+            <div
+              onClick={() => setMenu(Menu === i ? null : i)}
+              className="pt-5 border-b-1 border-black/10 border-black/10 border-black/10 duration-700 ease-in-out transition-all"
+            >
+              <h2 className="text-lg font-medium cursor-pointer flex items-center justify-between">
+                {e.menTitle}
+                {Menu === i ? <ChevronDown /> : <ChevronUp />}
+              </h2>
+
+              <div
+                className={`overflow-hidden duration-700 ease-in-out transition-all  pt-5 ${
+                  Menu === i ? "max-h-500" : "max-h-0"
+                }`}
+              >
+                {e.list.map((e, i) => (
+                  <div className="text-sm text-black/60 font-medium hover:text-black py-2">
+                    <Link>
+                      <span>{e.title}</span>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* name of developer */}
+      <h2 className="text-sm text-black/60 py-2 px-4">
+        © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
+        reserved
+      </h2>
     </footer>
   );
 };
