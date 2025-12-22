@@ -23,16 +23,20 @@ const Footer = () => {
   return (
     <footer className="pb-15">
       {/* footer 1 */}
-      <div className="px-5 md:flex flex-col items-center justify-center">
-        <img src={logo} className="w-20 md:w-30 py-2" alt="" />
-        <div className="flex gap-10">
-          {listFooter.map((e, i) => (
-            <div className="" key={i}>
-              <Link to={e.links}>
-                <SmallText text={e.title} />
-              </Link>
-            </div>
-          ))}
+      <div className="px-5">
+        <div className="flex justify-center">
+          <img src={logo} className="w-15 md:w-30 py-5" alt="" />
+        </div>
+        <div className="md:flex flex-col items-center justify-center">
+          <div className="flex gap-10">
+            {listFooter.map((e, i) => (
+              <div className="" key={i}>
+                <Link to={e.links}>
+                  <SmallText text={e.title} />
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       {/* footer 2 */}
@@ -70,7 +74,7 @@ const Footer = () => {
               >
                 {e.menTitle}
               </h2>
-              <div className="px-5">
+              <div className="px-2">
                 <div
                   className={`overflow-hidden duration-700 ease-in-out transition-all
                   ${isMenu === i ? "max-h-500" : "max-h-0"}
