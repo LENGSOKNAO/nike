@@ -34,9 +34,9 @@ const Footer = () => {
       </div>
       {/* footer 2 */}
       <>
-        <div className="hidden md:block">
+        <div className="hidden md:block bg-red">
           <div className="flex justify-center">
-            <div className="pt-40  md:w-[95%] lg:w-[80%] xl:w-[60%]">
+            <div className="py-20 md:w-[95%] lg:w-[80%] xl:w-[60%]">
               <div className="grid grid-cols-4 justify-items-center group">
                 {dataFooter2.map((e, i) => (
                   <div className="">
@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div onMouseLeave={closeMenu} className="md:hidden py-10">
+        <div onMouseLeave={closeMenu} className="md:hidden py-5">
           {dataFooter2.map((e, i) => (
             <div className="">
               <h2
@@ -82,7 +82,7 @@ const Footer = () => {
           ))}
         </div>
       </>
-      <div className="border-t-1 border-black/10 mt-10">
+      <div className="border-t-1 border-black/10 ">
         <h2 className="text-sm text-black/60 py-2">© 2025. Developer by soknao and seyha</h2>
       </div>
     </footer>
