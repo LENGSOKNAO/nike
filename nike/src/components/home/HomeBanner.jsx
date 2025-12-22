@@ -6,7 +6,7 @@ import { CgPlayButton, CgPlayPause } from "react-icons/cg";
 import BigText from "../props/text/BigText";
 import SmallText from "../props/text/SmallText";
 import BtnWith from "../props/btn/BtnWith";
-import logoBanner from "../../assets/bannerHome/bannerTop.jpg"
+import logoBanner from "../../assets/bannerHome/bannerTop.jpg";
 
 const HomeBanner = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -26,12 +26,14 @@ const HomeBanner = () => {
     setCurrentImage((n) => (n + 1) % listBannerImage.length);
     progressRef.current = 0;
     setProgress(0);
+    setAutoPlay(true);
   };
   // black
   const prev = () => {
     setCurrentImage((n) => (n === 0 ? listBannerImage.length - 1 : n - 1));
     progressRef.current = 0;
     setProgress(0);
+    setAutoPlay(true);
   };
   // Auto-play effect
   useEffect(() => {
@@ -88,7 +90,7 @@ const HomeBanner = () => {
     setIsDragging(false);
     setDragOffset(0);
     // Resume autoplay after short delay
-    setTimeout(() => setAutoPlay(true), 1000);
+    // setTimeout(() => setAutoPlay(true), 5000);
   };
 
   useEffect(() => {
@@ -115,11 +117,7 @@ const HomeBanner = () => {
     <div className="">
       {/* banner bar */}
       <div className="relative h-20 ">
-        <img
-          src={logoBanner}
-          className="h-full w-full object-cover  "
-          alt=""
-        />
+        <img src={logoBanner} className="h-full w-full object-cover  " alt="" />
         <div className="flex items-center justify-between px-[2%] absolute inset-0">
           <div className={styleText}>
             finish <br /> strong
