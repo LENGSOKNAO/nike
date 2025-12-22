@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
       </>
       <div className="border-t-1 border-black/10 ">
-        <h2 className="text-sm text-black/60 py-2">
+        <h2 className="text-sm text-black/60 py-2 px-4">
           © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
           reserved
         </h2>
