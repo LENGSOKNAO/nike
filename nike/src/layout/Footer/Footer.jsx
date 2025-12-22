@@ -20,8 +20,8 @@ const Footer = () => {
   return (
     <footer className="">
       {/* footer 1 */}
-      <div className="flex flex-col items-center justify-center">
-        <img src={logo} className="w-30" alt="" />
+      <div className="md:flex flex-col items-center justify-center">
+        <img src={logo} className="w-20 md:w-30 py-2" alt="" />
         <div className="flex gap-10">
           {listFooter.map((e, i) => (
             <div className="" key={i}>
@@ -83,7 +83,10 @@ const Footer = () => {
         </div>
       </>
       <div className="border-t-1 border-black/10 ">
-        <h2 className="text-sm text-black/60 py-2">© 2025. Developer by soknao and seyha</h2>
+        <h2 className="text-sm text-black/60 py-2">
+          © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
+          reserved
+        </h2>
       </div>
     </footer>
   );
