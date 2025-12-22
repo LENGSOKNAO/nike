@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="">
+    <footer className="pb-15">
       {/* footer 1 */}
       <div className="px-5 md:flex flex-col items-center justify-center">
         <img src={logo} className="w-20 md:w-30 py-2" alt="" />
@@ -144,7 +144,7 @@ const Footer = () => {
         </div>
       </div>
       {/* name of developer */}
-      <h2 className="text-sm text-black/60 py-2 px-4">
+      <h2 className="text-sm text-black/60 py-2 px-4 w-[70%]">
         © 2025 Soknao and Seyha. Developed by Soknao and Seyha. All rights
         reserved
       </h2>
