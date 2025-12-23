@@ -71,7 +71,7 @@ const LinkWomen = () => {
       >
         {listData.map((e, i) => (
           <div className=" w-full shrink-0" key={i}>
-            <h2 className="text-sm underline font-medium">
+            <h2 className="text-sm underline  font-medium">
               <Link>{e.title}</Link>
             </h2>
           </div>
