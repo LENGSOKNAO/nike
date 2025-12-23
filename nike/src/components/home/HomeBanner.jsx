@@ -7,6 +7,7 @@ import BigText from "../props/text/BigText";
 import SmallText from "../props/text/SmallText";
 import BtnWith from "../props/btn/BtnWith";
 import logoBanner from "../../assets/bannerHome/bannerTop.jpg";
+import Banner from "../props/banner/Banner";
 
 const HomeBanner = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -137,102 +138,7 @@ const HomeBanner = () => {
         </div>
       </div>
       {/* banner */}
-      <div
-        className="overflow-hidden h-[75vh] relative  bg-white"
-        ref={bannerRef}
-        onMouseDown={handleMouseDown}
-      >
-        <div
-          className="flex transition-transform duration-800 ease-in-out h-full  "
-          style={{
-            transform: `translateX(calc(-${
-              currentImage * 100
-            }% + ${dragOffset}vw))`,
-            transition: isDragging ? "none" : "transform 0.8s ease-in-out",
-          }}
-        >
-          {listBannerImage.map((e, i) => (
-            <>
-              <div
-                key={i}
-                className="min-w-full h-full relative flex justify-center"
-              >
-                {/* black grandient */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/50 to-transparent"></div>
-                {/* image banner */}
-                <img
-                  src={e.image}
-                  className="object-cover w-full h-full"
-                  alt=""
-                />
-                {/* data of banner */}
-                <div className="absolute bottom-15 text-center text-white w-[70%] sm:w-[70%] md:w-[50%] xl:w-[100vh]">
-                  <BigText text={e.title} />
-                  <div className="py-5">
-                    <SmallText text={e.subTitle} />
-                  </div>
-                  <BtnWith text={e.btnName} />
-                </div>
-              </div>
-            </>
-          ))}
-        </div>
-        {/* dot banner */}
-        <div className="flex gap-2 justify-center">
-          <div className="absolute bottom-5  flex gap-2">
-            {listBannerImage.map((_, i) => (
-              <button
-                key={i}
-                className={` w-1.5 h-1.5 rounded-4xl ${
-                  i === currentImage ? "bg-white" : "bg-gray-400"
-                } `}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* arrow for control banner */}
-        <div className="absolute bottom-5 right-5 sm:right-10 flex gap-2 items-center justify-center ">
-          <button
-            onClick={(e) => setAutoPlay((p) => !p)}
-            className="relative flex justify-center items-center w-12 h-12"
-          >
-            <svg className="absolute inset-0 w-full h-full -rotate-90">
-              <circle
-                cx="24"
-                cy="24"
-                r={radius}
-                stroke="rgba(255,255,255,0.3)"
-                strokeWidth="4"
-                fill="none"
-              />
-              <circle
-                cx="24"
-                cy="24"
-                r={radius}
-                stroke="white"
-                strokeWidth="4"
-                fill="none"
-                strokeDasharray={circumference}
-                strokeDashoffset={offset}
-              />
-            </svg>
-
-            {autoPlay ? (
-              <CgPlayPause className="text-white h-10 w-10  " />
-            ) : (
-              <CgPlayButton className="text-white h-10 w-10" />
-            )}
-          </button>
-          <button onClick={prev} className={styleArrow}>
-            <ChevronLeft />
-          </button>
-
-          <button onClick={next} className={styleArrow}>
-            <ChevronRight />
-          </button>
-        </div>
-      </div>
+      <Banner data={listBannerImage} />
     </div>
   );
 };

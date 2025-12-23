@@ -228,7 +228,7 @@ export const DataNavlist = [
   },
   {
     title: "Women",
-    link: "women",
+    link: "/women",
     list: [
       // Column 1: Limited Time & New & Featured
       {
@@ -455,7 +455,7 @@ export const DataNavlist = [
   },
   {
     title: "Kids",
-    link: "kids",
+    link: "/kids",
     list: [
       // Column 1: Limited Time & New & Featured
       {
@@ -690,7 +690,7 @@ export const DataNavlist = [
   },
   {
     title: "Jordan",
-    link: "jordan",
+    link: "/jordan",
     list: [
       // Column 1: New & Featured
       {
@@ -887,7 +887,7 @@ export const DataNavlist = [
   },
   {
     title: "Sale",
-    link: "sale",
+    link: "/sale",
     list: [
       // Column 1: Promotions
       {

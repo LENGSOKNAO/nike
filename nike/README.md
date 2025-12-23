@@ -1,8 +1,8 @@
 <!-- nao -->
 
-- navbar
-- footer
-- home page
+- navbar // done
+- footer // done
+- home page // done
 - list product
 - bag
 - favoriute
