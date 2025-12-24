@@ -7,6 +7,7 @@ import BannerTow from "../../components/women/BannerTow";
 import WomenBannerTow from "../../components/women/WomenBannerTow";
 import TrainingWomen from "../../components/women/TrainingWomen";
 import ShopByColorWomen from "../../components/women/ShopByColorWomen";
+import SportLight from "../../components/home/SportLight";
 
 const WomenHome = () => {
   return (
@@ -18,6 +19,7 @@ const WomenHome = () => {
       <TrainingWomen />
       <WomenBannerTow />
       <ShopByColorWomen />
+      <SportLight />
     </Layout>
   );
 };

@@ -41,7 +41,7 @@ const TrainingWomen = () => {
     },
   ];
   return (
-    <div className="mx-10 my-20">
+    <div className=" mx-2 md:mx-10 my-20">
       <h2 className="text-3xl font-normal py-3">Training Essentials</h2>
       <div className="flex gap-4 overflow-x-scroll">
         {listData.map((e, i) => (

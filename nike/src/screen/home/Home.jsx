@@ -11,6 +11,7 @@ const Home = () => {
       <HomeBanner />
       <GridBannerTow />
       <GridBannerTree />
+      <SportLight />
     </Layout>
   );
 };
