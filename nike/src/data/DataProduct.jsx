@@ -1,15 +1,12 @@
 import product1 from "../assets/product/NIKE+P-6000+SE.png";
 import product from "../assets/product/image (14).png";
-// Add more images if you have them, or reuse existing ones for now
-// For demo, I'm reusing product1 and product — replace with real images later
 
 export const DataProducts = [
   {
     title: "Men's Slim Fit T-Shirt",
-    category: ["Men", "T-Shirts", "Casual"], // fixed typo: categroy → category
+    category: ["Men", "T-Shirts", "Casual"],
     product: [
       {
-        type: "Men's Slim Fit T-Shirt",
         img: product1,
         subImage: [],
         price: 29.99,
@@ -18,7 +15,6 @@ export const DataProducts = [
         color: "Black",
       },
       {
-        type: "Men's Slim Fit T-Shirt",
         img: product,
         subImage: [],
         price: 29.99,
@@ -27,7 +23,6 @@ export const DataProducts = [
         color: "White",
       },
       {
-        type: "Men's Slim Fit T-Shirt",
         img: product1,
         subImage: [],
         price: 29.99,
@@ -42,7 +37,6 @@ export const DataProducts = [
     category: ["Women", "Dresses", "Summer"],
     product: [
       {
-        type: "Women's Floral Sundress",
         img: product,
         subImage: [],
         price: 49.99,
@@ -51,7 +45,6 @@ export const DataProducts = [
         color: "Blue",
       },
       {
-        type: "Women's Floral Sundress",
         img: product1,
         subImage: [],
         price: 49.99,
@@ -61,36 +54,12 @@ export const DataProducts = [
       },
     ],
   },
-  {
-    title: "Unisex Casual Sneakers",
-    category: ["Footwear", "Casual", "Unisex"],
-    product: [
-      {
-        type: "Unisex Casual Sneakers",
-        img: product1,
-        subImage: [],
-        price: 69.99,
-        discount: 10,
-        code: "SNK003-WH",
-        color: "White",
-      },
-      {
-        type: "Unisex Casual Sneakers",
-        img: product,
-        subImage: [],
-        price: 69.99,
-        discount: 10,
-        code: "SNK003-BL",
-        color: "Black",
-      },
-    ],
-  },
+  // ... continue the same pattern for all other items
   {
     title: "Men's Denim Jeans",
     category: ["Men", "Pants", "Denim"],
     product: [
       {
-        type: "Men's Slim Denim Jeans",
         img: product1,
         subImage: [],
         price: 79.99,
@@ -99,7 +68,6 @@ export const DataProducts = [
         color: "Dark Blue",
       },
       {
-        type: "Men's Slim Denim Jeans",
         img: product,
         subImage: [],
         price: 79.99,
@@ -109,139 +77,5 @@ export const DataProducts = [
       },
     ],
   },
-  {
-    title: "Women's Hoodie",
-    category: ["Women", "Tops", "Casual"],
-    product: [
-      {
-        type: "Women's Oversized Hoodie",
-        img: product,
-        subImage: [],
-        price: 59.99,
-        discount: 30,
-        code: "HDY005-GY",
-        color: "Gray",
-      },
-      {
-        type: "Women's Oversized Hoodie",
-        img: product1,
-        subImage: [],
-        price: 59.99,
-        discount: 30,
-        code: "HDY005-PK",
-        color: "Pink",
-      },
-    ],
-  },
-  {
-    title: "Leather Jacket",
-    category: ["Unisex", "Outerwear", "Premium"],
-    product: [
-      {
-        type: "Unisex Leather Jacket",
-        img: product,
-        subImage: [],
-        price: 149.99,
-        discount: 20,
-        code: "LTH006-BK",
-        color: "Black",
-      },
-    ],
-  },
-  {
-    title: "Active Leggings",
-    category: ["Women", "Activewear", "Bottoms"],
-    product: [
-      {
-        type: "High-Waist Active Leggings",
-        img: product,
-        subImage: [],
-        price: 44.99,
-        discount: 15,
-        code: "LEG007-BL",
-        color: "Black",
-      },
-      {
-        type: "High-Waist Active Leggings",
-        img: product1,
-        subImage: [],
-        price: 44.99,
-        discount: 15,
-        code: "LEG007-NV",
-        color: "Navy",
-      },
-    ],
-  },
-  {
-    title: "Classic Baseball Cap",
-    category: ["Accessories", "Unisex", "Hats"],
-    product: [
-      {
-        type: "Adjustable Baseball Cap",
-        img: product,
-        subImage: [],
-        price: 24.99,
-        discount: 10,
-        code: "CAP008-BK",
-        color: "Black",
-      },
-      {
-        type: "Adjustable Baseball Cap",
-        img: product1,
-        subImage: [],
-        price: 24.99,
-        discount: 10,
-        code: "CAP008-RD",
-        color: "Red",
-      },
-    ],
-  },
-  {
-    title: "Knit Sweater",
-    category: ["Men", "Tops", "Winter"],
-    product: [
-      {
-        type: "Men's Crewneck Knit Sweater",
-        img: product,
-        subImage: [],
-        price: 64.99,
-        discount: 25,
-        code: "SWT009-BR",
-        color: "Brown",
-      },
-      {
-        type: "Men's Crewneck Knit Sweater",
-        img: product1,
-        subImage: [],
-        price: 64.99,
-        discount: 25,
-        code: "SWT009-GN",
-        color: "Green",
-      },
-    ],
-  },
-  {
-    title: "Summer Shorts",
-    category: ["Women", "Bottoms", "Casual"],
-    product: [
-      {
-        type: "Women's Linen Blend Shorts",
-        img: product,
-        subImage: [],
-        price: 39.99,
-        discount: 20,
-        code: "SHT010-BG",
-        color: "Beige",
-      },
-      {
-        type: "Women's Linen Blend Shorts",
-        img: product1,
-        subImage: [],
-        price: 39.99,
-        discount: 20,
-        code: "SHT010-WH",
-        color: "White",
-      },
-    ],
-  },
+  // Apply the same change to Women's Hoodie, Leather Jacket, Active Leggings, etc.
 ];

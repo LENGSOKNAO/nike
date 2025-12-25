@@ -1,10 +1,83 @@
 import React, { useState } from "react";
 import { DataProducts } from "../../data/DataProduct";
 import { FiFilter } from "react-icons/fi";
-import { ChevronDown, Sliders, SlidersHorizontal } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Sliders,
+  SlidersHorizontal,
+} from "lucide-react";
+
+const Shose = [
+  "Shoes",
+  "Jordan",
+  "Hodies and Pullovers",
+  "pants and Tights",
+  "Jackets & Vests",
+  "Tops and T-Shirts",
+  "Shorts",
+  "Sports",
+  "Swimwear",
+  "Skirts and Diesses",
+  "Jumpsuits and Rowpers",
+  "Tracksuits",
+  "Compression and Baselayer",
+  "Socks",
+  "Accessories and Equiment",
+];
+
+const Brand = ["Nike Sportswar", "Jordan", "NikeLab", "ACG", "NikePro"];
+
+const Sport = [
+  "Lifestyle",
+  "Running",
+  "Training & Gym",
+  "Yoga",
+  "Basketball",
+  "Football",
+  "Soccer",
+  "Baseball",
+  "Golf",
+  "Skateboarding",
+  "Tennis",
+  "Track & Field",
+  "Lacrosse",
+  "Walking",
+  "Outdoor",
+  "Volleyball",
+  "Swimming",
+  "Gymnastics",
+  "Hiking",
+  "Dance",
+  "Cheerleading",
+  "Cycling",
+];
+
+const Best = [
+  "Warm Weather",
+  "Wet Weather Conditions",
+  "Cold Weather",
+  "Dry Weather Conditions",
+];
+
+const Gender = ["Men", "Women", "Unisex"];
+const Kids = ["Boys", "Girls"];
 
 const ListProducts = () => {
   const [isProduct, setIsProduct] = useState([0, 0]);
+  const [checked, setChecked] = useState([]);
+  const [brand, setBrand] = useState(false);
+  const [sport, setSport] = useState(false);
+  const [gender, setGender] = useState(false);
+  const [best, setBest] = useState(false);
+  const [kids, setKids] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleBrands = showAll ? Brand : Brand.slice(0, 4);
+  const visibleSport = showAll ? Sport : Sport.slice(0, 4);
+  const visibleBest = showAll ? Best : Best.slice(0, 4);
+  const visibleGenders = showAll ? Gender : Gender.slice(0, 4);
+  const visibleKids = showAll ? Kids : Kids.slice(0, 4);
 
   const getColor = (color) => {
     const lowerColor = color.toLowerCase(); // Make it case-insensitive
@@ -39,9 +112,9 @@ const ListProducts = () => {
   };
 
   return (
-    <div className="px-[2%]">
+    <div className=" ">
       {/* top */}
-      <div className="flex justify-between px-[2%] py-5">
+      <div className="flex justify-between px-[2%] sticky top-0 z-10 bg-white py-5">
         <h2 className="text-2xl font-medium">
           {" "}
           Shop All Sale ({DataProducts.length})
@@ -57,71 +130,152 @@ const ListProducts = () => {
           </div>
         </div>
       </div>
-      {/* right */}
-      <div className="">
-        <div className="grid grid-cols-3 gap-2">
-          {DataProducts.map((e, i) => {
-            const isProducts = isProduct[i] ?? 0;
-            const productActive = e.product[isProducts];
+      {/*  */}
+      <div className="flex">
+        {/* left */}
+        <div className="hidden lg:block sticky top-20 py-10 min-w-60 h-220 overflow-y-auto overflow-hidden">
+          <div className="">
+            <ul className="px-10">
+              {Shose.map((e, i) => (
+                <li className="text-[16px] py-1 font-medium">{e}</li>
+              ))}
+              {/* brand */}
+              <ListProps
+                click={() => setBrand(!brand)}
+                showName={"Brand"}
+                icon={brand}
+                alldata={Brand}
+                listData={visibleBrands}
+                nameMore={showAll}
+                clickMore={(event) => {
+                  event.stopPropagation();
+                  setShowAll(!showAll);
+                }}
+              />
+              {/* sport */}
+              <ListProps
+                click={() => setSport(!sport)}
+                showName={"Sport"}
+                icon={sport}
+                alldata={Sport}
+                listData={visibleSport}
+                nameMore={showAll}
+                clickMore={(event) => {
+                  event.stopPropagation();
+                  setShowAll(!showAll);
+                }}
+              />
+              {/* best */}
+              <ListProps
+                click={() => setBest(!best)}
+                showName={"Best For"}
+                icon={best}
+                alldata={Best}
+                listData={visibleBest}
+                nameMore={showAll}
+                clickMore={(event) => {
+                  event.stopPropagation();
+                  setShowAll(!showAll);
+                }}
+              />
+              {/* gender */}
+              <ListProps
+                click={() => setGender(!gender)}
+                showName={"Gender"}
+                icon={gender}
+                alldata={Gender}
+                listData={visibleGenders}
+                nameMore={showAll}
+                clickMore={(event) => {
+                  event.stopPropagation();
+                  setShowAll(!showAll);
+                }}
+              />
+              {/* kids */}
+              <ListProps
+                click={() => setKids(!kids)}
+                showName={"Kids"}
+                icon={kids}
+                alldata={Kids}
+                listData={visibleKids}
+                nameMore={showAll}
+                clickMore={(event) => {
+                  event.stopPropagation();
+                  setShowAll(!showAll);
+                }}
+              />
+            </ul>
+          </div>
+        </div>
+        {/* right */}
+        <div className="px-[2%]">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {DataProducts.map((e, i) => {
+              const isProducts = isProduct[i] ?? 0;
+              const productActive = e.product[isProducts];
 
-            return (
-              <div key={i} className="">
-                <img
-                  src={productActive.img}
-                  className="w-full object-cover"
-                  alt=""
-                />
-                <div className="py-5">
-                  <div className="flex gap-1 ">
-                    {e.product.map((e, index) => (
-                      <div
-                        onMouseEnter={() => {
-                          const newData = [...isProduct];
-                          newData[i] = index;
-                          setIsProduct(newData);
-                        }}
-                        className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
-                        style={{
-                          backgroundColor: getColor(e.color),
-                        }}
-                      ></div>
-                    ))}
-                  </div>
-                  <h2 className="text-md font-medium "> {e.title} </h2>
-                  <ul className="flex gap-1 py-2 text-md font-medium text-black/50">
-                    {e.category.map((e, i) => (
-                      <li>{e}</li>
-                    ))}
-                  </ul>
+              return (
+                <div key={i} className="">
+                  <img
+                    src={productActive.img}
+                    className="w-full object-cover"
+                    alt=""
+                  />
+                  <div className="py-5">
+                    <div className="flex gap-1 pb-2 ">
+                      {e.product.map((e, index) => (
+                        <div
+                          onMouseEnter={() => {
+                            const newData = [...isProduct];
+                            newData[i] = index;
+                            setIsProduct(newData);
+                          }}
+                          className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
+                          style={{
+                            backgroundColor: getColor(e.color),
+                          }}
+                        ></div>
+                      ))}
+                    </div>
+                    <h2 className="text-md font-medium"> {e.title} </h2>
+                    <ul className="flex gap-1 py-1 text-md font-medium text-black/50">
+                      {e.category.map((e, i) => (
+                        <li>{e}</li>
+                      ))}
+                    </ul>
 
-                  <div className="flex items-center gap-3 mt-2">
-                    {/* Final price after discount - BIG and GREEN */}
-                    <span className="text-xl font-semibold text-green-600">
-                      {(
-                        (productActive.price * (100 - productActive.discount)) /
-                        100
-                      ).toFixed(2)}{" "}
-                      $
-                    </span>
+                    <div className="flex items-center flex-wrap gap-x-3 py-1">
+                      <span className="text-md font-semibold ">
+                        {(
+                          (productActive.price *
+                            (100 - productActive.discount)) /
+                          100
+                        ).toFixed(2)}
+                        $
+                      </span>
 
-                    {productActive.discount > 0 && (
-                      <del className="text-sm text-gray-500">
-                        {productActive.price} $
-                      </del>
-                    )}
+                      {productActive.discount > 0 && (
+                        <del className="text-md font-medium text-gray-500">
+                          {productActive.price} $
+                        </del>
+                      )}
 
-                    <h2>
+                      <h2 className="text-md font-medium text-green-600">
+                        {productActive.discount} % Off
+                      </h2>
+                    </div>
+                    <h2 className="text-md font-medium text-green-600">
                       {productActive.code == null
-                        ? `${productActive.discount}Off`
-                        : `Extra${productActive.discount} % Off ${productActive.code}`}
+                        ? null
+                        : `Extra ${productActive.discount} % Off ${productActive.code}`}
                     </h2>
-                  </div>
 
-                  <h2></h2>
+                    <h2></h2>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -129,3 +283,61 @@ const ListProducts = () => {
 };
 
 export default ListProducts;
+
+const ListProps = ({
+  click,
+  showName,
+  icon,
+  listData,
+  nameMore,
+  clickMore,
+  alldata,
+}) => {
+  const [checked, setChecked] = useState([]);
+
+  return (
+    <div className="border-t  pt-4 border-black/10 text-lg font-medium">
+      {/* Header */}
+      <div className="flex justify-between cursor-pointer" onClick={click}>
+        {showName}
+        {icon ? <ChevronUp /> : <ChevronDown />}
+      </div>
+
+      {/* List Items */}
+      <div className="py-2">
+        {icon &&
+          listData.map((item, i) => (
+            <li
+              key={i}
+              className="text-[16px] py-1 font-medium flex items-start  gap-2 cursor-pointer hover:text-black/80"
+            >
+              <input
+                type="checkbox"
+                checked={checked.includes(item)}
+                onChange={(event) => {
+                  event.stopPropagation();
+                  setChecked((prev) =>
+                    prev.includes(item)
+                      ? prev.filter((i) => i !== item)
+                      : [...prev, item]
+                  );
+                }}
+                className="min-w-5 min-h-5 cursor-pointer accent-black"
+              />
+              {item}
+            </li>
+          ))}
+
+        {/* Show More / Less Button */}
+        {icon && alldata.length > 4 && (
+          <button
+            onClick={clickMore}
+            className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
+          >
+            {nameMore ? "- Less" : "+ More"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
