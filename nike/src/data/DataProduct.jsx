@@ -54,7 +54,6 @@ export const DataProducts = [
       },
     ],
   },
-  // ... continue the same pattern for all other items
   {
     title: "Men's Denim Jeans",
     category: ["Men", "Pants", "Denim"],
@@ -77,5 +76,4 @@ export const DataProducts = [
       },
     ],
   },
-  // Apply the same change to Women's Hoodie, Leather Jacket, Active Leggings, etc.
 ];

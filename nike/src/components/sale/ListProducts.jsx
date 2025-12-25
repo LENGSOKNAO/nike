@@ -7,12 +7,13 @@ import {
   Sliders,
   SlidersHorizontal,
 } from "lucide-react";
+import { Link } from "react-router";
 
 const Shose = [
   "Shoes",
   "Jordan",
   "Hodies and Pullovers",
-  "pants and Tights",
+  "Pants and Tights",
   "Jackets & Vests",
   "Tops and T-Shirts",
   "Shorts",
@@ -65,6 +66,7 @@ const Kids = ["Boys", "Girls"];
 
 const ListProducts = () => {
   const [isProduct, setIsProduct] = useState([0, 0]);
+  const [showFilter, setShowFilter] = useState(true);
   const [checked, setChecked] = useState([]);
   const [brand, setBrand] = useState(false);
   const [sport, setSport] = useState(false);
@@ -114,102 +116,137 @@ const ListProducts = () => {
   return (
     <div className=" ">
       {/* top */}
-      <div className="flex justify-between px-[2%] sticky top-0 z-10 bg-white py-5">
-        <h2 className="text-2xl font-medium">
-          {" "}
-          Shop All Sale ({DataProducts.length})
-        </h2>
-        <div className="flex items-center gap-x-10">
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl">Hide Filter</h2>
-            <SlidersHorizontal />
+      {/* top lg screen */}
+      <div className="lg:hidden ">
+        <h2 className="text-2xl font-medium px-[2%]"> Shop All Sale</h2>
+        <ul className="flex gap-5 px-[2%] overflow-x-scroll hide-scrollbar-x">
+          {Shose.map((e, i) => (
+            <li
+              key={i}
+              className="shrink-0 font-medium text-[1rem] py-5 hover:text-black/60"
+            >
+              <Link>{e}</Link>
+            </li>
+          ))}
+        </ul>
+        <div className="px-[2%] flex justify-between border-t border-black/10 py-5">
+          <h2 className="text-lg font-medium text-black/50">
+            {" "}
+            {DataProducts.length} Results{" "}
+          </h2>
+          <div className="">
+            <div className="flex border border-black/10 gap-2 rounded-full px-5 py-1">
+              Filtter <SlidersHorizontal />
+            </div>
           </div>
-          <div className="flex items-center">
-            <h2 className="text-xl"> Shop By </h2>
-            <ChevronDown />
+        </div>
+      </div>
+      {/* top full scren */}
+      <div className="hidden lg:block ">
+        <div className="flex justify-between px-[2%] bg-white py-5">
+          <h2 className="text-2xl font-medium">
+            {" "}
+            Shop All Sale ({DataProducts.length})
+          </h2>
+          <div className="flex items-center gap-x-10">
+            <div
+              onClick={() => setShowFilter(!showFilter)}
+              className="cursor-pointer flex items-center gap-2"
+            >
+              <h2 className="text-xl">{showFilter ? "Hide" : "Show"} Filter</h2>
+              <SlidersHorizontal />
+            </div>
+            <div className="flex items-center">
+              <h2 className="text-xl"> Shop By </h2>
+              <ChevronDown />
+            </div>
           </div>
         </div>
       </div>
       {/*  */}
       <div className="flex">
         {/* left */}
-        <div className="hidden lg:block sticky top-20 py-10 min-w-60 h-220 overflow-y-auto overflow-hidden">
-          <div className="">
-            <ul className="px-10">
-              {Shose.map((e, i) => (
-                <li className="text-[16px] py-1 font-medium">{e}</li>
-              ))}
-              {/* brand */}
-              <ListProps
-                click={() => setBrand(!brand)}
-                showName={"Brand"}
-                icon={brand}
-                alldata={Brand}
-                listData={visibleBrands}
-                nameMore={showAll}
-                clickMore={(event) => {
-                  event.stopPropagation();
-                  setShowAll(!showAll);
-                }}
-              />
-              {/* sport */}
-              <ListProps
-                click={() => setSport(!sport)}
-                showName={"Sport"}
-                icon={sport}
-                alldata={Sport}
-                listData={visibleSport}
-                nameMore={showAll}
-                clickMore={(event) => {
-                  event.stopPropagation();
-                  setShowAll(!showAll);
-                }}
-              />
-              {/* best */}
-              <ListProps
-                click={() => setBest(!best)}
-                showName={"Best For"}
-                icon={best}
-                alldata={Best}
-                listData={visibleBest}
-                nameMore={showAll}
-                clickMore={(event) => {
-                  event.stopPropagation();
-                  setShowAll(!showAll);
-                }}
-              />
-              {/* gender */}
-              <ListProps
-                click={() => setGender(!gender)}
-                showName={"Gender"}
-                icon={gender}
-                alldata={Gender}
-                listData={visibleGenders}
-                nameMore={showAll}
-                clickMore={(event) => {
-                  event.stopPropagation();
-                  setShowAll(!showAll);
-                }}
-              />
-              {/* kids */}
-              <ListProps
-                click={() => setKids(!kids)}
-                showName={"Kids"}
-                icon={kids}
-                alldata={Kids}
-                listData={visibleKids}
-                nameMore={showAll}
-                clickMore={(event) => {
-                  event.stopPropagation();
-                  setShowAll(!showAll);
-                }}
-              />
-            </ul>
+        {showFilter && (
+          <div className="hidden lg:block">
+            <div className="sticky top-20 py-10 min-w-60 h-220 overflow-y-auto overflow-hidden">
+              <div className="">
+                <ul className="px-10">
+                  {Shose.map((e, i) => (
+                    <li className="text-[16px] py-1 font-medium">{e}</li>
+                  ))}
+                  {/* brand */}
+                  <ListProps
+                    click={() => setBrand(!brand)}
+                    showName={"Brand"}
+                    icon={brand}
+                    alldata={Brand}
+                    listData={visibleBrands}
+                    nameMore={showAll}
+                    clickMore={(event) => {
+                      event.stopPropagation();
+                      setShowAll(!showAll);
+                    }}
+                  />
+                  {/* sport */}
+                  <ListProps
+                    click={() => setSport(!sport)}
+                    showName={"Sport"}
+                    icon={sport}
+                    alldata={Sport}
+                    listData={visibleSport}
+                    nameMore={showAll}
+                    clickMore={(event) => {
+                      event.stopPropagation();
+                      setShowAll(!showAll);
+                    }}
+                  />
+                  {/* best */}
+                  <ListProps
+                    click={() => setBest(!best)}
+                    showName={"Best For"}
+                    icon={best}
+                    alldata={Best}
+                    listData={visibleBest}
+                    nameMore={showAll}
+                    clickMore={(event) => {
+                      event.stopPropagation();
+                      setShowAll(!showAll);
+                    }}
+                  />
+                  {/* gender */}
+                  <ListProps
+                    click={() => setGender(!gender)}
+                    showName={"Gender"}
+                    icon={gender}
+                    alldata={Gender}
+                    listData={visibleGenders}
+                    nameMore={showAll}
+                    clickMore={(event) => {
+                      event.stopPropagation();
+                      setShowAll(!showAll);
+                    }}
+                  />
+                  {/* kids */}
+                  <ListProps
+                    click={() => setKids(!kids)}
+                    showName={"Kids"}
+                    icon={kids}
+                    alldata={Kids}
+                    listData={visibleKids}
+                    nameMore={showAll}
+                    clickMore={(event) => {
+                      event.stopPropagation();
+                      setShowAll(!showAll);
+                    }}
+                  />
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
         {/* right */}
-        <div className="px-[2%]">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <div className="lg:px-[2%]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {DataProducts.map((e, i) => {
               const isProducts = isProduct[i] ?? 0;
               const productActive = e.product[isProducts];
