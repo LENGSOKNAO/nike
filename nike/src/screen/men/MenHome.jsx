@@ -3,6 +3,7 @@ import React from "react";
 import MenBar from "../../components/men/MenBar";
 import HeaderMen from "../../components/men/HeaderMen";
 import SportMen from "../../components/men/SportMen";
+import SportMen2 from "../../components/men/SportMen2";
 // import Test from "../../components/men/test";
 const MenHome = () => {
   return (
@@ -10,6 +11,7 @@ const MenHome = () => {
       <MenBar />
       <HeaderMen />
       <SportMen />
+      <SportMen2 />
       {/* <Test /> */}
     </Layout>
   );
