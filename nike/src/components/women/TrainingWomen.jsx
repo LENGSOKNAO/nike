@@ -21,7 +21,7 @@ const TrainingWomen = () => {
     },
     {
       image: ba2,
-      title: "Low Light, Hight Voltage",
+    title: "Low Light, Hight Voltage",  
       Link: "",
     },
     {

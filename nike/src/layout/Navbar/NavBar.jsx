@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
 import { ChevronDown, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Link } from "react-router";
@@ -6,6 +6,7 @@ import { DataNavlist } from "../../model/DataNavlist";
 import { DataPopular } from "../../model/popular";
 import { listFooter } from "../../model/ListFooter";
 import logo from "../../assets/logo.png";
+import { DataProducts } from "../../data/DataProduct";
 
 <img src={logo} className="w-20" alt="logo" />;
 
@@ -15,12 +16,36 @@ const NavBar = () => {
   const [isListOpen, setIsListOpen] = useState(false);
   const [isHoverMenu, setIsHoverMenu] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
+  const [isSearching, setIsSearching] = useState("");
+  const [recentSearches, setRecentSearches] = useState([]);
 
   const styleSmallBar =
     "absolute top-0 right-0 bottom-0 w-85 h-screen bg-white px-5";
   const btnHover = "hover:bg-gray-200 p-2 rounded-4xl cursor-pointer";
 
-  // search
+  // searching
+  const handleSearching = (e) => {
+    setIsSearching(e.target.value);
+  };
+
+  const productSearch = DataProducts.filter((p) =>
+    p.title.toLowerCase().includes(isSearching.toLowerCase())
+  );
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && isSearching.trim()) {
+      const updated = recentSearches.filter(
+        (item) => item.toLowerCase() !== isSearching.toLowerCase()
+      );
+      setRecentSearches([isSearching, ...updated].slice(0, 10));
+    }
+  };
+
+  const removeRecentSearch = (index) => {
+    setRecentSearches(recentSearches.filter((_, i) => i !== index));
+  };
+
+  // search open
   const openSearch = () => {
     setIsSearch(true);
     document.body.style.overflow = "hidden";
@@ -282,6 +307,9 @@ const NavBar = () => {
                           </div>
                           <input
                             type="text"
+                            value={isSearching}
+                            onChange={handleSearching}
+                            onKeyDown={handleKeyPress}
                             className="outline-none border-none text-lg  font-medium"
                             placeholder="Search"
                           />
@@ -303,25 +331,37 @@ const NavBar = () => {
                               ))}
                             </div>
                           </div>
-                          {/* recent */}
-                          <div className="">
-                            <h2 className="text-sm font-medium text-black/60">
-                              Recent Searches
-                            </h2>
-                            <div className="py-5">
-                              {DataPopular.slice(0, 10).map((e, i) => (
-                                <div
-                                  className="text-black hover:text-black/80 px-5 py-1 text-lg font-medium rounded-full flex items-center justify-between"
-                                  key={i}
-                                >
-                                  <Link> {e.name} </Link>
-                                  <div className="hover:bg-black/30 rounded-full cursor-pointer">
-                                    <X />
+
+                          {isSearching.trim() !== "" ? (
+                            productSearch.map((e, i) => (
+                              <div className="">
+                                <h2> {e.title} </h2>
+                              </div>
+                            ))
+                          ) : (
+                            // recent
+                            <div className="">
+                              <h2 className="text-sm font-medium text-black/60">
+                                Recent Searches
+                              </h2>
+                              <div className="py-5">
+                                {recentSearches.slice(0, 10).map((e, i) => (
+                                  <div
+                                    className="text-black hover:text-black/80 px-5 py-1 text-lg font-medium rounded-full flex items-center justify-between"
+                                    key={i}
+                                  >
+                                    <Link> {e} </Link>
+                                    <button
+                                      onClick={() => removeRecentSearch(i)}
+                                      className="hover:bg-black/30 rounded-full cursor-pointer"
+                                    >
+                                      <X />
+                                    </button>
                                   </div>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          )}
                         </div>
                       </div>
                       <span

@@ -7,7 +7,7 @@ import SportLight from "../../components/home/SportLight";
 
 const Home = () => {
   return (
-    <Layout>
+    <Layout>  
       <HomeBanner />
       <GridBannerTow />
       <GridBannerTree />

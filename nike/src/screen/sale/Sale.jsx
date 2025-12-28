@@ -10,5 +10,4 @@ const Sale = () => {
     </Layout>
   );
 };
-
 export default Sale;
