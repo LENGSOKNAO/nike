@@ -25,7 +25,7 @@ const SportMen2 = () => {
       <h1 className="p-5 mt-20 font-medium text-2xl sm:px-10">
         Trending Now
       </h1>
-      <div className=" bg-red-500  grid sm:grid-cols-2">
+      <div className="grid sm:grid-cols-2">
         {ListSport2.map((e, i) => (
           <BannerTowProp
             img={e.imges}
