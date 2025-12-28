@@ -1,6 +1,6 @@
 import React from "react";
-import SpMen1 from "../../assets/menpicsey/sportpic2/SpMen1.jpg";
-import SpMen2 from "../../assets/menpicsey/sportpic2/SpMen2.jpg";
+import SpMen1 from "../../assets/menpicsey/sportpic2/spMen1.jpg";
+import SpMen2 from "../../assets/menpicsey/sportpic2/spMen2.jpg";
 import BannerTowProp from "../props/banner/BannerTowProp";
 
 const SportMen2 = () => {
