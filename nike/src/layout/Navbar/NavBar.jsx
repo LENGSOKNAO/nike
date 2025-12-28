@@ -37,7 +37,8 @@ const NavBar = () => {
       const updated = recentSearches.filter(
         (item) => item.toLowerCase() !== isSearching.toLowerCase()
       );
-      setRecentSearches([isSearching, ...updated].slice(0, 10));
+      setRecentS
+      earches([isSearching, ...updated].slice(0, 10));
     }
   };
 
