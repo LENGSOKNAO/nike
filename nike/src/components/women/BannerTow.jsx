@@ -23,7 +23,8 @@ const BannerTow = () => {
 
   return (
     <div>
-      <div className="grid md:grid-cols-2">
+      
+      <div className=" grid md:grid-cols-2">
         {listData.map((e, i) => (
           <BannerTowProp
             img={e.image}
