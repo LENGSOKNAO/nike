@@ -443,7 +443,7 @@ const NavBar = () => {
                               )
                               .slice(0, 5)
                               .map((e, i) => (
-                                <div className="">
+                                <div key={i} className="">
                                   <div className="">
                                     <img
                                       src={e.img}
