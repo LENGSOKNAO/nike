@@ -8,7 +8,7 @@ const MenBar2 = () => {
       <div className="relative">
         <img src={img} alt="" />
         <div className="absolute">
-          <h2 className="">1</h2>
+          <h2 className="">2</h2>
           <h2 className="">2</h2>
           <div className=""></div>
         </div>
