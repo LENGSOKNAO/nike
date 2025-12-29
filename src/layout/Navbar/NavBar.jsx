@@ -457,8 +457,8 @@ const NavBar = () => {
                                       {e.title}{" "}
                                     </h2>
                                     <div className="text-[18px] text-black/70 font-medium flex flex-wrap">
-                                      {e.category.map((e) => (
-                                        <h2> {e}</h2>
+                                      {e.category.map((e, i) => (
+                                        <h2 key={i}> {e}</h2>
                                       ))}
                                     </div>
                                     <h2 className="text-[18px] font-medium">
