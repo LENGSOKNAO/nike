@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const MenBar2 = () => {
   return (
-    <div className="mt-20">
+    <div className="mt-15s">
       <h1 className="p-5 font-medium text-2xl sm:px-10">Give Sport</h1>
 
       <div className="relative w-full h-[450px]">

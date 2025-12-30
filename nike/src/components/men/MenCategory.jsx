@@ -11,15 +11,15 @@ const ListCat = [
 
 const MenCategory = () => {
   return (
-    <div className="mx-10 my-20">
+    <div className="mx-10 my-15">
       <h1 className="py-5 text-2xl">Shop By Category</h1>
       <div
         className=" flex gap-4 overflow-x-auto pb-3
-    lg:grid lg:grid-cols-3 lg:overflow-x-hidden "
+    sm:grid sm:grid-cols-3 sm:overflow-x-hidden "
       >
         {ListCat.map((e, i) => (
-          <div className="min-w-[300px] lg:min-w-0">
-            <img src={e.images} alt="" className="w-full h-85 object-cover " />
+          <div className="min-w-[350px] sm:min-w-0">
+            <img src={e.images} alt="" className="w-full h-110 object-cover " />
             <p className="mt-2 text-lg ">{e.nameCat}</p>
           </div>
         ))}
