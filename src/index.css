@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --font-Sekuya: "Sekuya";
+  --font-bigText: "Sekuya";
+}
+
+.hide-scrollbar-x {
+  scrollbar-width: none;
+}
