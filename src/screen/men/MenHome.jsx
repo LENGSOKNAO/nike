@@ -16,7 +16,6 @@ const MenHome = () => {
       <SportMen2 />
       <MenBar2 />
       <MenCategory />
-      {/* <Test /> */}
     </Layout>
   );
 };
