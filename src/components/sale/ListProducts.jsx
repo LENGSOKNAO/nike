@@ -117,7 +117,7 @@ const ListProducts = () => {
     <div className=" ">
       {/* top */}
       {/* top lg screen */}
-      <div className="lg:hidden ">
+      <div className="lg:hidden">
         <h2 className="text-2xl font-medium px-[2%]"> Shop All Sale</h2>
         <ul className="flex gap-5 px-[2%] overflow-x-scroll hide-scrollbar-x">
           {Shose.map((e, i) => (

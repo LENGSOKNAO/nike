@@ -11,7 +11,7 @@ const MenList = [
 const MenBar = () => {
   return (
     <>
-      <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-10">
+      <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-10  ">
         <div className=" h-a w-[40%] flex justify-start mb-2">
           <ul>
             <Link to="">

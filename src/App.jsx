@@ -4,6 +4,7 @@ import Home from "./screen/home/Home";
 import MenHome from "./screen/men/MenHome";
 import WomenHome from "./screen/women/womenHome";
 import Sale from "./screen/sale/Sale";
+import Test from "./components/men/Test";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/men" element={<MenHome />} />
         <Route path="/women" element={<WomenHome />} />
         <Route path="/sale" element={<Sale />} />
+        <Route path="/testing" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

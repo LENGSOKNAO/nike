@@ -352,6 +352,7 @@ const NavBar = () => {
                           <div className="p-2 bg-black/3 hover:bg-black/10 cursor-pointer rounded-full">
                             <CiSearch />
                           </div>
+                          {/* input search */}
                           <input
                             type="text"
                             value={isSearching}
