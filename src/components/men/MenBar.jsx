@@ -12,10 +12,10 @@ const MenBar = () => {
   return (
     <>
       <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-10 cursor-pointer overflow-hidden">
-        <div className=" h-a w-[40%] flex justify-start mb-2">
+        <div className=" h-a w-[35%] flex justify-start mb-2">
           <Link to="">Men</Link>
         </div>
-        <div className=" h-auto w-full lg:w-[60%] ">
+        <div className=" h-auto w-full lg:w-[65%] ">
           <ul className="flex gap-x-10  ">
             {MenList.map((e, i) => (
               <li>{e.name}</li>
