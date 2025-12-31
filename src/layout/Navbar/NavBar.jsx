@@ -166,7 +166,7 @@ const NavBar = () => {
                             value={isSearching}
                             onChange={handleSearching}
                             onKeyDown={handleKeyPress}
-                            className="outline-none border-none text-lg  w-[80%] font-medium"
+                            className="outline-none border-none text-sm lg:text-lg  w-[80%] font-medium"
                             placeholder="Search"
                           />
                         </div>
@@ -178,7 +178,7 @@ const NavBar = () => {
                         Concel
                       </span>
                     </div>
-                    <div className="w-full p-5">
+                    <div className="w-full p-5 ">
                       {(isSearching.length == 0 ||
                         productSearch.length == 0) && (
                         <div className="w-full">
@@ -224,7 +224,7 @@ const NavBar = () => {
                       )}
                     </div>
                     {isSearching.length > 0 && productSearch.length > 0 && (
-                      <div className="overflow-y-scroll h-200 ">
+                      <div className="overflow-y-scroll h-200 pb-50">
                         <div className="px-3 flex flex-col gap-2 rounded">
                           <h2 className="font-medium text-black/70 text-sm">
                             Top Categories
