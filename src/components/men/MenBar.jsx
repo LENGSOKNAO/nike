@@ -15,16 +15,13 @@ const MenBar = () => {
         <div className=" h-a w-[40%] flex justify-start mb-2">
           <Link to="">Men</Link>
         </div>
-        <div className=" h-auto w- lg:w-[60%] ">
-          <ul className="flex gap-x-20  ">
+        <div className=" h-auto w-full lg:w-[60%] ">
+          <ul className="flex gap-x-10  ">
             {MenList.map((e, i) => (
               <li>{e.name}</li>
             ))}
           </ul>
         </div>
-      </div>
-      <div className="">
-        <img className="h-auto w-full" src={ImgBanner} alt="" />
       </div>
     </>
   );
