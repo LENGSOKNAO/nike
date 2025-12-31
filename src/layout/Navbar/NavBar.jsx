@@ -154,8 +154,8 @@ const NavBar = () => {
                 <>
                   <div className="absolute top-0 right-0 z-10 left-0 bg-white">
                     {/* search */}
-                    <div className="flex justify-between px-5 py-2 ">
-                      <div className="flex w-full flex-col items-center justify-center pt-2">
+                    <div className="flex items-center justify-between gap-5 px-3 py-3">
+                      <div className="flex w-full flex-col items-center justify-center ">
                         <div className="flex w-full items-center bg-black/3 hover:bg-black/5  rounded-full">
                           <div className="p-2 bg-black/3 hover:bg-black/10 cursor-pointer rounded-full">
                             <CiSearch />
@@ -173,7 +173,7 @@ const NavBar = () => {
                       </div>
                       <span
                         onClick={closeSearch}
-                        className="text-lg font-medium cursor-pointer py-4"
+                        className="text-sm lg:text-lg font-medium cursor-pointer "
                       >
                         Concel
                       </span>
