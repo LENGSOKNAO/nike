@@ -6,6 +6,7 @@ import {
   ChevronUp,
   Sliders,
   SlidersHorizontal,
+  X,
 } from "lucide-react";
 import { Link } from "react-router";
 
@@ -67,6 +68,7 @@ const Kids = ["Boys", "Girls"];
 const ListProducts = () => {
   const [isProduct, setIsProduct] = useState([0, 0]);
   const [showFilter, setShowFilter] = useState(true);
+  const [showFilterSmall, setShowFilterSmall] = useState(false);
   const [brand, setBrand] = useState(false);
   const [sport, setSport] = useState(false);
   const [gender, setGender] = useState(false);
@@ -120,8 +122,24 @@ const ListProducts = () => {
     return category || brand;
   });
 
+  const openSmallFilter = () => {
+    setShowFilterSmall(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeSmallFilter = () => {
+    setShowFilterSmall(false);
+    document.body.style.overflow = "";
+  };
+
+  const handleChange = (items) => {
+    setSelectBrand((e) =>
+      e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+    );
+  };
+
   return (
-    <div className="">
+    <div className="overflow-hidden">
       {/* top */}
       {/* top lg screen */}
       <div className="lg:hidden">
@@ -138,21 +156,68 @@ const ListProducts = () => {
         </ul>
         <div className="px-[2%] flex justify-between border-t border-black/10 py-5">
           <h2 className="text-lg font-medium text-black/50">
-            {" "}
-            {DataProducts.length} Results{" "}
+            {DataProducts.length} Results
           </h2>
           <div className="">
-            <div className="flex border border-black/10 gap-2 rounded-full px-5 py-1">
+            <div
+              onClick={openSmallFilter}
+              className="flex border border-black/10 gap-2 rounded-full px-5 py-1"
+            >
               Filtter <SlidersHorizontal />
             </div>
           </div>
         </div>
       </div>
+      {/* filter small */}
+      {showFilterSmall && (
+        <div className="bg-white absolute inset-0 flex flex-col z-10 px-5 ">
+          <div className="flex justify-between py-10">
+            <h2 className="text-2xl"> Filter </h2>
+            <div className="" onClick={closeSmallFilter}>
+              <X />
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-scroll">
+            <div className="">
+              <h2> Barnd </h2>
+              {visibleBrands.map((e) => (
+                <div className="flex gap-x-2 py-2">
+                  <input
+                    checked={selectBrand.includes(e)}
+                    onChange={() => handleChange(e)}
+                    type="checkbox"
+                    className="w-5 h-5 accent-black"
+                  />
+                  <h2> {e} </h2>
+                </div>
+              ))}
+
+              {/* Show More / Less Button */}
+              {Brand.length > 4 && (
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setShowAll((e) => !e);
+                  }}
+                  className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
+                >
+                  {showAll ? "- Less" : "+ More"}
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="sticky bottom-0 left-0 right-0 ">
+            <button onClick={closeSmallFilter} className="">
+              {" "}
+              Apply{" "}
+            </button>
+          </div>
+        </div>
+      )}
       {/* top full scren */}
       <div className="hidden lg:block ">
         <div className="flex justify-between px-[2%] bg-white py-5">
           <h2 className="text-2xl font-medium">
-            {" "}
             Shop All Sale ({DataProducts.length})
           </h2>
           <div className="flex items-center gap-x-10">
@@ -276,8 +341,8 @@ const ListProducts = () => {
                       className="w-full object-cover"
                       alt=""
                     />
-                    <div className="py-5">
-                      <div className="flex gap-1 pb-2 ">
+                    <div className="py-5 px-2 lg:px-0">
+                      <div className="flex  gap-1 pb-2 ">
                         {e.product.map((e, index) => (
                           <div
                             onMouseEnter={() => {
@@ -292,8 +357,8 @@ const ListProducts = () => {
                           ></div>
                         ))}
                       </div>
-                      <h2 className="text-md font-medium"> {e.title} </h2>
-                      <ul className="flex gap-1 py-1 text-md font-medium text-black/50">
+                      <h2 className="text-md font-medium "> {e.title} </h2>
+                      <ul className="flex gap-1 py-1 flex-wrap text-md font-medium text-black/50">
                         {e.category.map((e, i) => (
                           <li>{e}</li>
                         ))}
@@ -355,7 +420,6 @@ const ListProps = ({
   setSelect,
   alldata,
 }) => {
-  const [checked, setChecked] = useState([]);
   const handleChange = (items) => {
     setSelect((e) =>
       e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
