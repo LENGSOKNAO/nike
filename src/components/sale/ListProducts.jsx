@@ -207,7 +207,10 @@ const ListProducts = () => {
             </div>
           </div>
           <div className="sticky bottom-0 left-0 right-0 ">
-            <button onClick={closeSmallFilter} className="">
+            <button
+              onClick={closeSmallFilter}
+              className="text-shadow-amber-300"
+            >
               {" "}
               Apply{" "}
             </button>
