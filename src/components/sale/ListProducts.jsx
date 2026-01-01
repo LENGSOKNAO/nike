@@ -67,13 +67,15 @@ const Kids = ["Boys", "Girls"];
 const ListProducts = () => {
   const [isProduct, setIsProduct] = useState([0, 0]);
   const [showFilter, setShowFilter] = useState(true);
-  const [checked, setChecked] = useState([]);
   const [brand, setBrand] = useState(false);
   const [sport, setSport] = useState(false);
   const [gender, setGender] = useState(false);
   const [best, setBest] = useState(false);
   const [kids, setKids] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  // selsct
+  const [selectStort, setSelectStort] = useState([]);
+  const [selectBrand, setSelectBrand] = useState([]);
 
   const visibleBrands = showAll ? Brand : Brand.slice(0, 4);
   const visibleSport = showAll ? Sport : Sport.slice(0, 4);
@@ -81,40 +83,45 @@ const ListProducts = () => {
   const visibleGenders = showAll ? Gender : Gender.slice(0, 4);
   const visibleKids = showAll ? Kids : Kids.slice(0, 4);
 
-  const getColor = (color) => {
-    const lowerColor = color.toLowerCase(); // Make it case-insensitive
-
-    if (lowerColor.includes("black")) return "#000000"; // Black
-    if (lowerColor.includes("white")) return "#FFFFFF"; // White
-    if (lowerColor.includes("gray") || lowerColor.includes("grey"))
-      return "#808080"; // Gray
-    if (lowerColor.includes("blue")) return "#3B82F6"; // Blue (Tailwind blue-500)
-    if (lowerColor.includes("red")) return "#EF4444"; // Red
-    if (lowerColor.includes("green")) return "#10B981"; // Green
-    if (lowerColor.includes("yellow")) return "#FBBF24"; // Yellow
-    if (lowerColor.includes("pink")) return "#EC4899"; // Pink
-    if (lowerColor.includes("purple")) return "#8B5CF6"; // Purple
-    if (lowerColor.includes("orange")) return "#F97316"; // Orange
-    if (lowerColor.includes("beige")) return "#F5F5DC"; // Beige
-    if (lowerColor.includes("brown")) return "#92400E"; // Brown
-    if (lowerColor.includes("navy")) return "#1E40AF"; // Navy Blue
-    if (lowerColor.includes("light blue") || lowerColor.includes("sky"))
-      return "#0EA5E9"; // Light/Sky Blue
-    if (lowerColor.includes("dark blue")) return "#1E293B"; // Dark Blue
-    if (lowerColor.includes("mint")) return "#6EE7B7"; // Mint Green
-    if (lowerColor.includes("lavender")) return "#C4B5FD"; // Lavender
-    if (lowerColor.includes("olive")) return "#84CC16"; // Olive Green
-    if (lowerColor.includes("maroon")) return "#7F1D1D"; // Maroon
-    if (lowerColor.includes("teal")) return "#14B8A6"; // Teal
-    if (lowerColor.includes("gold")) return "#EAB308"; // Gold
-    if (lowerColor.includes("silver")) return "#94A3B8"; // Silver
-
-    // Default fallback color if no match
+  const getColor = (colorName) => {
+    const lower = colorName.toLowerCase();
+    const map = {
+      black: "#000000",
+      white: "#FFFFFF",
+      gray: "#808080",
+      grey: "#808080",
+      blue: "#3B82F6",
+      red: "#EF4444",
+      green: "#10B981",
+      yellow: "#FBBF24",
+      pink: "#EC4899",
+      purple: "#8B5CF6",
+      orange: "#F97316",
+      navy: "#1E40AF",
+    };
+    for (const [key, value] of Object.entries(map)) {
+      if (lower.includes(key)) return value;
+    }
     return "#999999";
   };
 
+  const filterData = DataProducts.filter((p) => {
+    const category =
+      selectStort.length > 0
+        ? selectStort.some((s) => p.category.includes(s))
+        : false;
+
+    const brand =
+      selectBrand.length > 0
+        ? selectBrand.some((b) => p.brand.includes(b))
+        : false;
+
+    if (!selectBrand.length > 0 && !selectStort.length > 0) return true;
+    return category || brand;
+  });
+
   return (
-    <div className=" ">
+    <div className="">
       {/* top */}
       {/* top lg screen */}
       <div className="lg:hidden">
@@ -181,6 +188,8 @@ const ListProducts = () => {
                     icon={brand}
                     alldata={Brand}
                     listData={visibleBrands}
+                    selected={selectBrand}
+                    setSelect={setSelectBrand}
                     nameMore={showAll}
                     clickMore={(event) => {
                       event.stopPropagation();
@@ -192,7 +201,9 @@ const ListProducts = () => {
                     click={() => setSport(!sport)}
                     showName={"Sport"}
                     icon={sport}
+                    selected={selectStort}
                     alldata={Sport}
+                    setSelect={setSelectStort}
                     listData={visibleSport}
                     nameMore={showAll}
                     clickMore={(event) => {
@@ -206,6 +217,8 @@ const ListProducts = () => {
                     showName={"Best For"}
                     icon={best}
                     alldata={Best}
+                    selected={selectStort}
+                    setSelect={setSelectStort}
                     listData={visibleBest}
                     nameMore={showAll}
                     clickMore={(event) => {
@@ -219,6 +232,8 @@ const ListProducts = () => {
                     showName={"Gender"}
                     icon={gender}
                     alldata={Gender}
+                    selected={selectStort}
+                    setSelect={setSelectStort}
                     listData={visibleGenders}
                     nameMore={showAll}
                     clickMore={(event) => {
@@ -233,6 +248,8 @@ const ListProducts = () => {
                     icon={kids}
                     alldata={Kids}
                     listData={visibleKids}
+                    selected={selectStort}
+                    setSelect={setSelectStort}
                     nameMore={showAll}
                     clickMore={(event) => {
                       event.stopPropagation();
@@ -245,74 +262,80 @@ const ListProducts = () => {
           </div>
         )}
         {/* right */}
-        <div className="lg:px-[2%]">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-            {DataProducts.map((e, i) => {
-              const isProducts = isProduct[i] ?? 0;
-              const productActive = e.product[isProducts];
+        <div className="lg:px-[2%] w-full">
+          {filterData.length > 0 ? (
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+              {filterData.map((e, i) => {
+                const isProducts = isProduct[i] ?? 0;
+                const productActive = e.product[isProducts];
 
-              return (
-                <div key={i} className="">
-                  <img
-                    src={productActive.img}
-                    className="w-full object-cover"
-                    alt=""
-                  />
-                  <div className="py-5">
-                    <div className="flex gap-1 pb-2 ">
-                      {e.product.map((e, index) => (
-                        <div
-                          onMouseEnter={() => {
-                            const newData = [...isProduct];
-                            newData[i] = index;
-                            setIsProduct(newData);
-                          }}
-                          className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
-                          style={{
-                            backgroundColor: getColor(e.color),
-                          }}
-                        ></div>
-                      ))}
-                    </div>
-                    <h2 className="text-md font-medium"> {e.title} </h2>
-                    <ul className="flex gap-1 py-1 text-md font-medium text-black/50">
-                      {e.category.map((e, i) => (
-                        <li>{e}</li>
-                      ))}
-                    </ul>
+                return (
+                  <div key={i} className="">
+                    <img
+                      src={productActive.img}
+                      className="w-full object-cover"
+                      alt=""
+                    />
+                    <div className="py-5">
+                      <div className="flex gap-1 pb-2 ">
+                        {e.product.map((e, index) => (
+                          <div
+                            onMouseEnter={() => {
+                              const newData = [...isProduct];
+                              newData[i] = index;
+                              setIsProduct(newData);
+                            }}
+                            className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
+                            style={{
+                              backgroundColor: getColor(e.color),
+                            }}
+                          ></div>
+                        ))}
+                      </div>
+                      <h2 className="text-md font-medium"> {e.title} </h2>
+                      <ul className="flex gap-1 py-1 text-md font-medium text-black/50">
+                        {e.category.map((e, i) => (
+                          <li>{e}</li>
+                        ))}
+                      </ul>
 
-                    <div className="flex items-center flex-wrap gap-x-3 py-1">
-                      <span className="text-md font-semibold ">
-                        {(
-                          (productActive.price *
-                            (100 - productActive.discount)) /
-                          100
-                        ).toFixed(2)}
-                        $
-                      </span>
+                      <div className="flex items-center flex-wrap gap-x-3 py-1">
+                        <span className="text-md font-semibold ">
+                          {(
+                            (productActive.price *
+                              (100 - productActive.discount)) /
+                            100
+                          ).toFixed(2)}
+                          $
+                        </span>
 
-                      {productActive.discount > 0 && (
-                        <del className="text-md font-medium text-gray-500">
-                          {productActive.price} $
-                        </del>
-                      )}
+                        {productActive.discount > 0 && (
+                          <del className="text-md font-medium text-gray-500">
+                            {productActive.price} $
+                          </del>
+                        )}
 
+                        <h2 className="text-md font-medium text-green-600">
+                          {productActive.discount} % Off
+                        </h2>
+                      </div>
                       <h2 className="text-md font-medium text-green-600">
-                        {productActive.discount} % Off
+                        {productActive.code == null
+                          ? null
+                          : `Extra ${productActive.discount} % Off ${productActive.code}`}
                       </h2>
-                    </div>
-                    <h2 className="text-md font-medium text-green-600">
-                      {productActive.code == null
-                        ? null
-                        : `Extra ${productActive.discount} % Off ${productActive.code}`}
-                    </h2>
 
-                    <h2></h2>
+                      <h2></h2>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-full h-full py-10">
+              <p className="mt-4 text-gray-500">No products available</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -325,12 +348,19 @@ const ListProps = ({
   click,
   showName,
   icon,
+  selected,
   listData,
   nameMore,
   clickMore,
+  setSelect,
   alldata,
 }) => {
   const [checked, setChecked] = useState([]);
+  const handleChange = (items) => {
+    setSelect((e) =>
+      e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+    );
+  };
 
   return (
     <div className="border-t  pt-4 border-black/10 text-lg font-medium">
@@ -350,17 +380,11 @@ const ListProps = ({
             >
               <input
                 type="checkbox"
-                checked={checked.includes(item)}
-                onChange={(event) => {
-                  event.stopPropagation();
-                  setChecked((prev) =>
-                    prev.includes(item)
-                      ? prev.filter((i) => i !== item)
-                      : [...prev, item]
-                  );
-                }}
+                checked={selected.includes(item)}
+                onChange={() => handleChange(item)}
                 className="min-w-5 min-h-5 cursor-pointer accent-black"
               />
+
               {item}
             </li>
           ))}
