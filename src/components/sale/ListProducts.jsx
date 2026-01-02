@@ -145,6 +145,16 @@ const ListProducts = () => {
     document.body.style.overflow = "";
   };
 
+  const clearFilter = () => {
+    setShowFilterSmall(false);
+    document.body.style.overflow = "";
+    setSelectBrand([]);
+    setSelectStort([]);
+    setSelectGender([]);
+    setSelectBest([]);
+    setSelectKids([]);
+  };
+
   const ListProps = ({
     click,
     showName,
@@ -278,14 +288,14 @@ const ListProducts = () => {
       </div>
       {/* filter small */}
       {showFilterSmall && (
-        <div className="bg-white fixed inset-0 flex flex-col z-10 ">
+        <div className="bg-white fixed inset-0 flex flex-col z-10 lg:hidden">
           <div className="flex justify-between py-10 px-5">
             <h2 className="text-2xl"> Filter </h2>
             <div className="" onClick={closeSmallFilter}>
               <X />
             </div>
           </div>
-          <div className="flex-4 overflow-y-auto px-5">
+          <div className="flex-7 overflow-y-auto px-5">
             <FilterDataProps
               setData={setSelectBrand}
               data={selectBrand}
@@ -339,14 +349,22 @@ const ListProducts = () => {
               clickShow={() => setShowMoreMobileKids((prev) => !prev)}
             />
           </div>
-          <div className=" flex-1 flex items-center justify-center px-5 text-center ">
-            <button
-              onClick={closeSmallFilter}
-              className="bg-black text-white w-[80%] rounded-4xl py-3 text-xl cursor-pointer"
-            >
-              Apply
-            </button>
-          </div>
+          {(selectBrand.length > 0 || selectStort.length > 0) && (
+            <div className="flex-1 flex items-center justify-center gap-3 px-5 text-center">
+              <button
+                onClick={clearFilter}
+                className="border border-black/20 font-medium w-[80%] rounded-4xl py-3 text-sm cursor-pointer"
+              >
+                Clear ({selectBrand.length + selectStort.length})
+              </button>
+              <button
+                onClick={closeSmallFilter}
+                className="bg-black text-white w-[80%] font-medium rounded-4xl py-3 text-sm cursor-pointer"
+              >
+                Apply
+              </button>
+            </div>
+          )}
         </div>
       )}
       {/* top full scren */}
