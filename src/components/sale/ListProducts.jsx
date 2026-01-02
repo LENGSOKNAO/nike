@@ -78,12 +78,25 @@ const ListProducts = () => {
   // selsct
   const [selectStort, setSelectStort] = useState([]);
   const [selectBrand, setSelectBrand] = useState([]);
+  const [showMoreMobileBrand, setShowMoreMobileBrand] = useState(false);
+  const [showMoreMobileSport, setShowMoreMobileSport] = useState(false);
+  const [showMoreMobileGender, setShowMoreMobileGender] = useState(false);
+  const [showMoreMobileBest, setShowMoreMobileBest] = useState(false);
+  const [showMoreMobileKids, setShowMoreMobileKids] = useState(false);
 
   const visibleBrands = showAll ? Brand : Brand.slice(0, 4);
   const visibleSport = showAll ? Sport : Sport.slice(0, 4);
   const visibleBest = showAll ? Best : Best.slice(0, 4);
   const visibleGenders = showAll ? Gender : Gender.slice(0, 4);
   const visibleKids = showAll ? Kids : Kids.slice(0, 4);
+
+  const visibleMobileBrands = showMoreMobileBrand ? Brand : Brand.slice(0, 4);
+  const visibleMobileSport = showMoreMobileSport ? Sport : Sport.slice(0, 4);
+  const visibleMobileBest = showMoreMobileBest ? Best : Best.slice(0, 4);
+  const visibleMobileKids = showMoreMobileKids ? Kids : Kids.slice(0, 4);
+  const visibleMobileGender = showMoreMobileGender
+    ? Gender
+    : Gender.slice(0, 4);
 
   const getColor = (colorName) => {
     const lower = colorName.toLowerCase();
@@ -132,9 +145,104 @@ const ListProducts = () => {
     document.body.style.overflow = "";
   };
 
-  const handleChange = (items) => {
-    setSelectBrand((e) =>
-      e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+  const ListProps = ({
+    click,
+    showName,
+    icon,
+    selected,
+    listData,
+    nameMore,
+    clickMore,
+    setSelect,
+    alldata,
+  }) => {
+    const handleChange = (items) => {
+      setSelect((e) =>
+        e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+      );
+    };
+
+    return (
+      <div className="border-t  pt-4 border-black/10 text-lg font-medium">
+        {/* Header */}
+        <div className="flex justify-between cursor-pointer" onClick={click}>
+          {showName}
+          {icon ? <ChevronUp /> : <ChevronDown />}
+        </div>
+
+        {/* List Items */}
+        <div className="py-2">
+          {icon &&
+            listData.map((item, i) => (
+              <li
+                key={i}
+                className="text-[16px] py-1 font-medium flex items-start  gap-2 cursor-pointer hover:text-black/80"
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(item)}
+                  onChange={() => handleChange(item)}
+                  className="min-w-5 min-h-5 cursor-pointer accent-black"
+                />
+
+                {item}
+              </li>
+            ))}
+
+          {/* Show More / Less Button */}
+          {icon && alldata.length > 4 && (
+            <button
+              onClick={clickMore}
+              className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
+            >
+              {nameMore ? "- Less" : "+ More"}
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const FilterDataProps = ({
+    setData,
+    data,
+    allData,
+    dataSelect,
+    dataName,
+    show,
+    clickShow,
+  }) => {
+    const handleChange = (items) => {
+      setData((e) =>
+        e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+      );
+    };
+
+    return (
+      <div className="">
+        <h2 className="text-lg pb-8 "> {dataName} </h2>
+        {dataSelect.map((e) => (
+          <div className="flex gap-x-2 py-2">
+            <input
+              checked={data.includes(e)}
+              onChange={() => handleChange(e)}
+              type="checkbox"
+              className="w-5 h-5 accent-black"
+            />
+            <h2> {e} </h2>
+          </div>
+        ))}
+
+        {/* Show More / Less Button */}
+        {allData.length > 4 && (
+          <button
+            onClick={clickShow}
+            className="mt-2 text-sm text-black/80 cursor-pointer"
+          >
+            {show ? "- Less" : "+ More"}
+          </button>
+        )}
+      </div>
     );
   };
 
@@ -170,49 +278,73 @@ const ListProducts = () => {
       </div>
       {/* filter small */}
       {showFilterSmall && (
-        <div className="bg-white absolute inset-0 flex flex-col z-10 px-5 ">
-          <div className="flex justify-between py-10">
+        <div className="bg-white fixed inset-0 flex flex-col z-10 ">
+          <div className="flex justify-between py-10 px-5">
             <h2 className="text-2xl"> Filter </h2>
             <div className="" onClick={closeSmallFilter}>
               <X />
             </div>
           </div>
-          <div className="flex-1 overflow-y-scroll">
-            <div className="">
-              <h2> Barnd </h2>
-              {visibleBrands.map((e) => (
-                <div className="flex gap-x-2 py-2">
-                  <input
-                    checked={selectBrand.includes(e)}
-                    onChange={() => handleChange(e)}
-                    type="checkbox"
-                    className="w-5 h-5 accent-black"
-                  />
-                  <h2> {e} </h2>
-                </div>
-              ))}
+          <div className="flex-4 overflow-y-auto px-5">
+            <FilterDataProps
+              setData={setSelectBrand}
+              data={selectBrand}
+              allData={Brand}
+              dataName="Brands"
+              dataSelect={visibleMobileBrands}
+              show={showMoreMobileBrand}
+              clickShow={() => setShowMoreMobileBrand((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Sport}
+              dataName="Sports"
+              dataSelect={visibleMobileSport}
+              show={showMoreMobileSport}
+              clickShow={() => setShowMoreMobileSport((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
 
-              {/* Show More / Less Button */}
-              {Brand.length > 4 && (
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setShowAll((e) => !e);
-                  }}
-                  className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
-                >
-                  {showAll ? "- Less" : "+ More"}
-                </button>
-              )}
-            </div>
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Gender}
+              dataName="Genders"
+              dataSelect={visibleMobileGender}
+              show={showMoreMobileGender}
+              clickShow={() => setShowMoreMobileGender((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Best}
+              dataName="Bests"
+              dataSelect={visibleMobileBest}
+              show={showMoreMobileBest}
+              clickShow={() => setShowMoreMobileBest((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Kids}
+              dataName="Kidss"
+              dataSelect={visibleMobileKids}
+              show={showMoreMobileKids}
+              clickShow={() => setShowMoreMobileKids((prev) => !prev)}
+            />
           </div>
-          <div className="sticky bottom-0 left-0 right-0 ">
+          <div className=" flex-1 flex items-center justify-center px-5 text-center ">
             <button
               onClick={closeSmallFilter}
-              className="text-shadow-amber-300"
+              className="bg-black text-white w-[80%] rounded-4xl py-3 text-xl cursor-pointer"
             >
-              {" "}
-              Apply{" "}
+              Apply
             </button>
           </div>
         </div>
@@ -353,6 +485,11 @@ const ListProducts = () => {
                               newData[i] = index;
                               setIsProduct(newData);
                             }}
+                            onClick={() => {
+                              const newData = [...isProduct];
+                              newData[i] = index;
+                              setIsProduct(newData);
+                            }}
                             className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
                             style={{
                               backgroundColor: getColor(e.color),
@@ -411,61 +548,3 @@ const ListProducts = () => {
 };
 
 export default ListProducts;
-
-const ListProps = ({
-  click,
-  showName,
-  icon,
-  selected,
-  listData,
-  nameMore,
-  clickMore,
-  setSelect,
-  alldata,
-}) => {
-  const handleChange = (items) => {
-    setSelect((e) =>
-      e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
-    );
-  };
-
-  return (
-    <div className="border-t  pt-4 border-black/10 text-lg font-medium">
-      {/* Header */}
-      <div className="flex justify-between cursor-pointer" onClick={click}>
-        {showName}
-        {icon ? <ChevronUp /> : <ChevronDown />}
-      </div>
-
-      {/* List Items */}
-      <div className="py-2">
-        {icon &&
-          listData.map((item, i) => (
-            <li
-              key={i}
-              className="text-[16px] py-1 font-medium flex items-start  gap-2 cursor-pointer hover:text-black/80"
-            >
-              <input
-                type="checkbox"
-                checked={selected.includes(item)}
-                onChange={() => handleChange(item)}
-                className="min-w-5 min-h-5 cursor-pointer accent-black"
-              />
-
-              {item}
-            </li>
-          ))}
-
-        {/* Show More / Less Button */}
-        {icon && alldata.length > 4 && (
-          <button
-            onClick={clickMore}
-            className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
-          >
-            {nameMore ? "- Less" : "+ More"}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-};
