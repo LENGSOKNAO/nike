@@ -185,12 +185,11 @@ const NavBar = () => {
                             {/* input search */}
                             <input
                               ref={searchInputRef}
-                              type="search" // Use search type
+                              type="search"  
                               value={isSearching}
                               onChange={handleSearching}
                               onKeyDown={handleKeyPress}
                               className="outline-none border-none text-base lg:text-lg w-[80%] font-medium"
-                              style={{ fontSize: "16px", minHeight: "44px" }}
                               placeholder="Search"
                               enterKeyHint="search"
                             />
