@@ -8,7 +8,7 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 const Shose = [
   "Shoes",
@@ -75,6 +75,9 @@ const ListProducts = () => {
   const [best, setBest] = useState(false);
   const [kids, setKids] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  // searching
+  const [searchParms] = useSearchParams();
+  const searchQuery = searchParms.get("q")?.trim().toLocaleLowerCase() || "";
   // selsct
   const [selectStort, setSelectStort] = useState([]);
   const [selectBrand, setSelectBrand] = useState([]);
@@ -121,6 +124,17 @@ const ListProducts = () => {
   };
 
   const filterData = DataProducts.filter((p) => {
+    if (searchQuery) {
+      const matchesSearch =
+        p.title?.toLowerCase().includes(searchQuery) ||
+        p.category?.some((cat) => cat.toLowerCase().includes(searchQuery)) ||
+        p.product?.some((cat) =>
+          cat.color.toLowerCase().includes(searchQuery)
+        ) ||
+        p.brand?.toLowerCase().includes(searchQuery);
+      if (!matchesSearch) return false;
+    }
+
     const category =
       selectStort.length > 0
         ? selectStort.some((s) => p.category.includes(s))
@@ -257,7 +271,7 @@ const ListProducts = () => {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="">
       {/* top */}
       {/* top lg screen */}
       <div className="lg:hidden">
@@ -508,7 +522,7 @@ const ListProducts = () => {
                               newData[i] = index;
                               setIsProduct(newData);
                             }}
-                            className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
+                            className="w-8 h-8 lg:w-4 lg:h-4 border border-black/20 cursor-pointer rounded-full"
                             style={{
                               backgroundColor: getColor(e.color),
                             }}
@@ -539,7 +553,9 @@ const ListProducts = () => {
                         )}
 
                         <h2 className="text-md font-medium text-green-600">
-                          {productActive.discount} % Off
+                          {productActive.discount !== 0
+                            ? `${productActive.discount} % Off`
+                            : ""}
                         </h2>
                       </div>
                       <h2 className="text-md font-medium text-green-600">

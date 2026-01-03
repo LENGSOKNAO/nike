@@ -62,12 +62,22 @@ const NavBar = () => {
           ),
         ];
 
+  useEffect(() => {
+    const saved = localStorage.getItem("recentSearches");
+    if (saved) {
+      setRecentSearches(JSON.parse(saved));
+    }
+  }, []);
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && isSearching.trim()) {
       const updated = recentSearches.filter(
         (item) => item.toLowerCase() !== isSearching.toLowerCase()
       );
-      setRecentSearches([isSearching, ...updated].slice(0, 10));
+      const newSearches = [isSearching, ...updated].slice(0, 10);
+      setRecentSearches(newSearches);
+      localStorage.setItem("recentSearches", JSON.stringify(newSearches));
+      window.location.href = `/sale?q=${encodeURIComponent(isSearching)}`;
     }
   };
 
@@ -193,7 +203,13 @@ const NavBar = () => {
                                   className="bg-black/5 hover:bg-black/10 px-5 py-1 text-lg font-medium rounded-full"
                                   key={i}
                                 >
-                                  <Link> {e.name} </Link>
+                                  <Link
+                                    to={`/sale?q=${encodeURIComponent(e)}`}
+                                    onClick={closeSearch}
+                                  >
+                                    {" "}
+                                    {e.name}{" "}
+                                  </Link>
                                 </div>
                               ))}
                             </div>
@@ -209,7 +225,13 @@ const NavBar = () => {
                                   className="text-black hover:text-black/80  py-1 text-lg font-medium rounded-full flex items-center justify-between"
                                   key={i}
                                 >
-                                  <Link> {e} </Link>
+                                  <Link
+                                    to={`/sale?q=${encodeURIComponent(e)}`}
+                                    onClick={closeSearch}
+                                  >
+                                    {" "}
+                                    {e}{" "}
+                                  </Link>
                                   <button
                                     onClick={() => removeRecentSearch(i)}
                                     className="hover:bg-black/30 rounded-full cursor-pointer"
@@ -514,7 +536,13 @@ const NavBar = () => {
                                       className="bg-black/5 hover:bg-black/10 px-5 py-1 text-lg font-medium rounded-full"
                                       key={i}
                                     >
-                                      <Link> {e.name} </Link>
+                                      <Link
+                                        to={`/sale?q=${encodeURIComponent(e)}`}
+                                        onClick={closeSearch}
+                                      >
+                                        {" "}
+                                        {e.name}{" "}
+                                      </Link>
                                     </div>
                                   ))}
                                 </div>
@@ -530,7 +558,12 @@ const NavBar = () => {
                                       className="text-black hover:text-black/80 px-5 py-1 text-lg font-medium rounded-full flex items-center justify-between"
                                       key={i}
                                     >
-                                      <Link> {e} </Link>
+                                      <Link
+                                        to={`/sale?q=${encodeURIComponent(e)}`}
+                                        onClick={closeSearch}
+                                      >
+                                        {e}
+                                      </Link>
                                       <button
                                         onClick={() => removeRecentSearch(i)}
                                         className="hover:bg-black/30 rounded-full cursor-pointer"
