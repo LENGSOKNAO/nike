@@ -18,6 +18,7 @@ const NavBar = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [isSearching, setIsSearching] = useState("");
   const [recentSearches, setRecentSearches] = useState([]);
+  const searchInputRef = useRef(null);
 
   const styleSmallBar =
     "absolute top-0 right-0 bottom-0 w-85 h-screen bg-white px-5";
@@ -61,6 +62,12 @@ const NavBar = () => {
             )
           ),
         ];
+
+  useEffect(() => {
+    if (isSearch && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearch]);
 
   useEffect(() => {
     const saved = localStorage.getItem("recentSearches");
@@ -173,6 +180,7 @@ const NavBar = () => {
                           {/* input search */}
                           <input
                             type="text"
+                            ref={searchInputRef}
                             value={isSearching}
                             onChange={handleSearching}
                             onKeyDown={handleKeyPress}
