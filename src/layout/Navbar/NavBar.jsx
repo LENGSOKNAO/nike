@@ -189,6 +189,7 @@ const NavBar = () => {
                               value={isSearching}
                               onChange={handleSearching}
                               onKeyDown={handleKeyPress}
+                              style={{ touchAction: "manipulation" }}
                               className="outline-none border-none text-sm lg:text-lg w-[80%] font-medium"
                               placeholder="Search"
                               enterKeyHint="search"
