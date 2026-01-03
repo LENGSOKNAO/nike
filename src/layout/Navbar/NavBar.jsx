@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
 import { ChevronDown, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { DataNavlist } from "../../model/DataNavlist";
 import { DataPopular } from "../../model/popular";
 import { listFooter } from "../../model/ListFooter";
@@ -18,6 +18,9 @@ const NavBar = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [isSearching, setIsSearching] = useState("");
   const [recentSearches, setRecentSearches] = useState([]);
+
+  const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const styleSmallBar =
     "absolute top-0 right-0 bottom-0 w-85 h-screen bg-white px-5";
@@ -69,6 +72,12 @@ const NavBar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (isSearch && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearch]);
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && isSearching.trim()) {
       const updated = recentSearches.filter(
@@ -77,7 +86,9 @@ const NavBar = () => {
       const newSearches = [isSearching, ...updated].slice(0, 10);
       setRecentSearches(newSearches);
       localStorage.setItem("recentSearches", JSON.stringify(newSearches));
-      window.location.href = `/sale?q=${encodeURIComponent(isSearching)}`;
+
+      navigate(`/sale?q=${encodeURIComponent(isSearching)}`); // Smooth navigation
+      closeSearch();
     }
   };
 
@@ -160,153 +171,156 @@ const NavBar = () => {
                 <CiSearch />
               </div>
               {/* searching product */}
-              {isSearch && (
-                <>
-                  <div className="absolute top-0 right-0 z-10 left-0 bg-white">
-                    {/* search */}
-                    <div className="flex items-center justify-between gap-5 px-3 py-3">
-                      <div className="flex w-full flex-col items-center justify-center ">
-                        <div className="flex w-full items-center bg-black/3 hover:bg-black/5  rounded-full">
-                          <div className="p-2 bg-black/3 hover:bg-black/10 cursor-pointer rounded-full">
-                            <CiSearch />
+              <div className="">
+                {isSearch && (
+                  <>
+                    <div className="absolute top-0 right-0 z-10 left-0 bg-white">
+                      {/* search */}
+                      <div className="flex items-center justify-between gap-5 px-3 py-3">
+                        <div className="flex w-full flex-col items-center justify-center ">
+                          <div className="flex w-full items-center bg-black/3 hover:bg-black/5  rounded-full">
+                            <div className="p-2 bg-black/3 hover:bg-black/10 cursor-pointer rounded-full">
+                              <CiSearch />
+                            </div>
+                            {/* input search */}
+                            <input
+                              ref={searchInputRef}
+                              type="search"  
+                              value={isSearching}
+                              onChange={handleSearching}
+                              onKeyDown={handleKeyPress}
+                              className="outline-none border-none text-base lg:text-lg w-[80%] font-medium"
+                              placeholder="Search"
+                              enterKeyHint="search"
+                            />
                           </div>
-                          {/* input search */}
-                          <input
-                            type="text"
-                            value={isSearching}
-                            onChange={handleSearching}
-                            onKeyDown={handleKeyPress}
-                            className="outline-none border-none text-sm lg:text-lg  w-[80%] font-medium"
-                            placeholder="Search"
-                            enterKeyHint="search"
-                          />
                         </div>
+                        <span
+                          onClick={closeSearch}
+                          className="text-sm lg:text-lg font-medium cursor-pointer "
+                        >
+                          Concel
+                        </span>
                       </div>
-                      <span
-                        onClick={closeSearch}
-                        className="text-sm lg:text-lg font-medium cursor-pointer "
-                      >
-                        Concel
-                      </span>
-                    </div>
-                    <div className="w-full p-5 ">
-                      {(isSearching.length == 0 ||
-                        productSearch.length == 0) && (
-                        <div className="w-full">
-                          {/* popular */}
-                          <div className="">
-                            <h2 className="text-sm font-medium text-black/60">
-                              Popular Search Terms
-                            </h2>
-                            <div className="flex gap-x-5 gap-y-2 flex-wrap py-5">
-                              {DataPopular.map((e, i) => (
-                                <div
-                                  className="bg-black/5 hover:bg-black/10 px-5 py-1 text-lg font-medium rounded-full"
-                                  key={i}
-                                >
-                                  <Link
-                                    to={`/sale?q=${encodeURIComponent(e)}`}
-                                    onClick={closeSearch}
+                      <div className="w-full p-5">
+                        {(isSearching.length == 0 ||
+                          productSearch.length == 0) && (
+                          <div className="w-full">
+                            {/* popular */}
+                            <div className="">
+                              <h2 className="text-sm font-medium text-black/60">
+                                Popular Search Terms
+                              </h2>
+                              <div className="flex gap-x-5 gap-y-2 flex-wrap py-5">
+                                {DataPopular.map((e, i) => (
+                                  <div
+                                    className="bg-black/5 hover:bg-black/10 px-5 py-1 text-lg font-medium rounded-full"
+                                    key={i}
                                   >
-                                    {" "}
-                                    {e.name}{" "}
-                                  </Link>
-                                </div>
-                              ))}
+                                    <Link
+                                      to={`/sale?q=${encodeURIComponent(e)}`}
+                                      onClick={closeSearch}
+                                    >
+                                      {" "}
+                                      {e.name}{" "}
+                                    </Link>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            {/* recent */}
+                            <div className="">
+                              <h2 className="text-sm font-medium text-black/60">
+                                Recent Searches
+                              </h2>
+                              <div className="">
+                                {recentSearches.slice(0, 10).map((e, i) => (
+                                  <div
+                                    className="text-black hover:text-black/80  py-1 text-lg font-medium rounded-full flex items-center justify-between"
+                                    key={i}
+                                  >
+                                    <Link
+                                      to={`/sale?q=${encodeURIComponent(e)}`}
+                                      onClick={closeSearch}
+                                    >
+                                      {" "}
+                                      {e}{" "}
+                                    </Link>
+                                    <button
+                                      onClick={() => removeRecentSearch(i)}
+                                      className="hover:bg-black/30 rounded-full cursor-pointer"
+                                    >
+                                      <X />
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           </div>
-                          {/* recent */}
-                          <div className="">
-                            <h2 className="text-sm font-medium text-black/60">
-                              Recent Searches
+                        )}
+                      </div>
+                      {isSearching.length > 0 && productSearch.length > 0 && (
+                        <div className="overflow-y-scroll h-200 pb-50">
+                          <div className="px-3 flex flex-col gap-2 rounded">
+                            <h2 className="font-medium text-black/70 text-sm">
+                              Top Categories
                             </h2>
-                            <div className="">
-                              {recentSearches.slice(0, 10).map((e, i) => (
-                                <div
-                                  className="text-black hover:text-black/80  py-1 text-lg font-medium rounded-full flex items-center justify-between"
-                                  key={i}
-                                >
-                                  <Link
-                                    to={`/sale?q=${encodeURIComponent(e)}`}
-                                    onClick={closeSearch}
-                                  >
-                                    {" "}
-                                    {e}{" "}
-                                  </Link>
-                                  <button
-                                    onClick={() => removeRecentSearch(i)}
-                                    className="hover:bg-black/30 rounded-full cursor-pointer"
-                                  >
-                                    <X />
-                                  </button>
+                            {topCategories.map((e, i) => (
+                              <div key={i} className="">
+                                <div className="">
+                                  <h2 className="text-lg font-normal text-black/70">
+                                    {highlightMatch(e, isSearching)}
+                                  </h2>
                                 </div>
-                              ))}
+                              </div>
+                            ))}
+                          </div>
+                          <div className="px-3 py-5">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-hidden">
+                              {productSearch
+                                .flatMap((main) =>
+                                  main.product.map((e) => ({
+                                    img: e.img,
+                                    title: main.title,
+                                    price: e.price,
+                                    category: main.category,
+                                  }))
+                                )
+                                .slice(0, 6)
+                                .map((e, i) => (
+                                  <div key={i} className="">
+                                    <div className="">
+                                      <img
+                                        src={e.img}
+                                        className="w-full h-full object-cover rounded-sm"
+                                        alt=""
+                                      />
+                                    </div>
+                                    <div className="flex flex-col gap-2 py-5">
+                                      <h2 className="text-[18px] font-medium">
+                                        {" "}
+                                        {e.title}{" "}
+                                      </h2>
+                                      <div className="text-[18px] text-black/70 font-medium flex flex-wrap">
+                                        {e.category.map((e, i) => (
+                                          <h2 key={i}> {e}</h2>
+                                        ))}
+                                      </div>
+                                      <h2 className="text-[18px] font-medium">
+                                        {" "}
+                                        ${e.price}{" "}
+                                      </h2>
+                                    </div>
+                                  </div>
+                                ))}
                             </div>
                           </div>
                         </div>
                       )}
                     </div>
-                    {isSearching.length > 0 && productSearch.length > 0 && (
-                      <div className="overflow-y-scroll h-200 pb-50">
-                        <div className="px-3 flex flex-col gap-2 rounded">
-                          <h2 className="font-medium text-black/70 text-sm">
-                            Top Categories
-                          </h2>
-                          {topCategories.map((e, i) => (
-                            <div key={i} className="">
-                              <div className="">
-                                <h2 className="text-lg font-normal text-black/70">
-                                  {highlightMatch(e, isSearching)}
-                                </h2>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="px-3 py-5">
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-hidden">
-                            {productSearch
-                              .flatMap((main) =>
-                                main.product.map((e) => ({
-                                  img: e.img,
-                                  title: main.title,
-                                  price: e.price,
-                                  category: main.category,
-                                }))
-                              )
-                              .slice(0, 6)
-                              .map((e, i) => (
-                                <div key={i} className="">
-                                  <div className="">
-                                    <img
-                                      src={e.img}
-                                      className="w-full h-full object-cover rounded-sm"
-                                      alt=""
-                                    />
-                                  </div>
-                                  <div className="flex flex-col gap-2 py-5">
-                                    <h2 className="text-[18px] font-medium">
-                                      {" "}
-                                      {e.title}{" "}
-                                    </h2>
-                                    <div className="text-[18px] text-black/70 font-medium flex flex-wrap">
-                                      {e.category.map((e, i) => (
-                                        <h2 key={i}> {e}</h2>
-                                      ))}
-                                    </div>
-                                    <h2 className="text-[18px] font-medium">
-                                      {" "}
-                                      ${e.price}{" "}
-                                    </h2>
-                                  </div>
-                                </div>
-                              ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </>
-              )}
+                  </>
+                )}
+              </div>
               <CiHeart />
               <CiBag1 />
               <Menu onClick={openSamllScreen} />
