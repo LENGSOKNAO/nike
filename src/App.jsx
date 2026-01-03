@@ -6,6 +6,7 @@ import WomenHome from "./screen/women/womenHome";
 import Sale from "./screen/sale/Sale";
 import Test from "./components/men/Test";
 import UsingProps from "./testing/UsingProps";
+import Kids from "./screen/kids/Kids";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/men" element={<MenHome />} />
         <Route path="/women" element={<WomenHome />} />
+        <Route path="/kids" element={<Kids />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="/testing" element={<UsingProps />} />
       </Routes>
