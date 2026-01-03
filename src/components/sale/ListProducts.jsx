@@ -6,8 +6,9 @@ import {
   ChevronUp,
   Sliders,
   SlidersHorizontal,
+  X,
 } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 const Shose = [
   "Shoes",
@@ -67,21 +68,38 @@ const Kids = ["Boys", "Girls"];
 const ListProducts = () => {
   const [isProduct, setIsProduct] = useState([0, 0]);
   const [showFilter, setShowFilter] = useState(true);
+  const [showFilterSmall, setShowFilterSmall] = useState(false);
   const [brand, setBrand] = useState(false);
   const [sport, setSport] = useState(false);
   const [gender, setGender] = useState(false);
   const [best, setBest] = useState(false);
   const [kids, setKids] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  // searching
+  const [searchParms] = useSearchParams();
+  const searchQuery = searchParms.get("q")?.trim().toLocaleLowerCase() || "";
   // selsct
   const [selectStort, setSelectStort] = useState([]);
   const [selectBrand, setSelectBrand] = useState([]);
+  const [showMoreMobileBrand, setShowMoreMobileBrand] = useState(false);
+  const [showMoreMobileSport, setShowMoreMobileSport] = useState(false);
+  const [showMoreMobileGender, setShowMoreMobileGender] = useState(false);
+  const [showMoreMobileBest, setShowMoreMobileBest] = useState(false);
+  const [showMoreMobileKids, setShowMoreMobileKids] = useState(false);
 
   const visibleBrands = showAll ? Brand : Brand.slice(0, 4);
   const visibleSport = showAll ? Sport : Sport.slice(0, 4);
   const visibleBest = showAll ? Best : Best.slice(0, 4);
   const visibleGenders = showAll ? Gender : Gender.slice(0, 4);
   const visibleKids = showAll ? Kids : Kids.slice(0, 4);
+
+  const visibleMobileBrands = showMoreMobileBrand ? Brand : Brand.slice(0, 4);
+  const visibleMobileSport = showMoreMobileSport ? Sport : Sport.slice(0, 4);
+  const visibleMobileBest = showMoreMobileBest ? Best : Best.slice(0, 4);
+  const visibleMobileKids = showMoreMobileKids ? Kids : Kids.slice(0, 4);
+  const visibleMobileGender = showMoreMobileGender
+    ? Gender
+    : Gender.slice(0, 4);
 
   const getColor = (colorName) => {
     const lower = colorName.toLowerCase();
@@ -106,6 +124,17 @@ const ListProducts = () => {
   };
 
   const filterData = DataProducts.filter((p) => {
+    if (searchQuery) {
+      const matchesSearch =
+        p.title?.toLowerCase().includes(searchQuery) ||
+        p.category?.some((cat) => cat.toLowerCase().includes(searchQuery)) ||
+        p.product?.some((cat) =>
+          cat.color.toLowerCase().includes(searchQuery)
+        ) ||
+        p.brand?.toLowerCase().includes(searchQuery);
+      if (!matchesSearch) return false;
+    }
+
     const category =
       selectStort.length > 0
         ? selectStort.some((s) => p.category.includes(s))
@@ -119,6 +148,127 @@ const ListProducts = () => {
     if (!selectBrand.length > 0 && !selectStort.length > 0) return true;
     return category || brand;
   });
+
+  const openSmallFilter = () => {
+    setShowFilterSmall(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeSmallFilter = () => {
+    setShowFilterSmall(false);
+    document.body.style.overflow = "";
+  };
+
+  const clearFilter = () => {
+    setShowFilterSmall(false);
+    document.body.style.overflow = "";
+    setSelectBrand([]);
+    setSelectStort([]);
+    setSelectGender([]);
+    setSelectBest([]);
+    setSelectKids([]);
+  };
+
+  const ListProps = ({
+    click,
+    showName,
+    icon,
+    selected,
+    listData,
+    nameMore,
+    clickMore,
+    setSelect,
+    alldata,
+  }) => {
+    const handleChange = (items) => {
+      setSelect((e) =>
+        e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+      );
+    };
+
+    return (
+      <div className="border-t  pt-4 border-black/10 text-lg font-medium">
+        {/* Header */}
+        <div className="flex justify-between cursor-pointer" onClick={click}>
+          {showName}
+          {icon ? <ChevronUp /> : <ChevronDown />}
+        </div>
+
+        {/* List Items */}
+        <div className="py-2">
+          {icon &&
+            listData.map((item, i) => (
+              <li
+                key={i}
+                className="text-[16px] py-1 font-medium flex items-start  gap-2 cursor-pointer hover:text-black/80"
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(item)}
+                  onChange={() => handleChange(item)}
+                  className="min-w-5 min-h-5 cursor-pointer accent-black"
+                />
+
+                {item}
+              </li>
+            ))}
+
+          {/* Show More / Less Button */}
+          {icon && alldata.length > 4 && (
+            <button
+              onClick={clickMore}
+              className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
+            >
+              {nameMore ? "- Less" : "+ More"}
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const FilterDataProps = ({
+    setData,
+    data,
+    allData,
+    dataSelect,
+    dataName,
+    show,
+    clickShow,
+  }) => {
+    const handleChange = (items) => {
+      setData((e) =>
+        e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
+      );
+    };
+
+    return (
+      <div className="">
+        <h2 className="text-lg pb-8 "> {dataName} </h2>
+        {dataSelect.map((e) => (
+          <div className="flex gap-x-2 py-2">
+            <input
+              checked={data.includes(e)}
+              onChange={() => handleChange(e)}
+              type="checkbox"
+              className="w-5 h-5 accent-black"
+            />
+            <h2> {e} </h2>
+          </div>
+        ))}
+
+        {/* Show More / Less Button */}
+        {allData.length > 4 && (
+          <button
+            onClick={clickShow}
+            className="mt-2 text-sm text-black/80 cursor-pointer"
+          >
+            {show ? "- Less" : "+ More"}
+          </button>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="">
@@ -138,21 +288,103 @@ const ListProducts = () => {
         </ul>
         <div className="px-[2%] flex justify-between border-t border-black/10 py-5">
           <h2 className="text-lg font-medium text-black/50">
-            {" "}
-            {DataProducts.length} Results{" "}
+            {DataProducts.length} Results
           </h2>
           <div className="">
-            <div className="flex border border-black/10 gap-2 rounded-full px-5 py-1">
+            <div
+              onClick={openSmallFilter}
+              className="flex border border-black/10 gap-2 rounded-full px-5 py-1"
+            >
               Filtter <SlidersHorizontal />
             </div>
           </div>
         </div>
       </div>
+      {/* filter small */}
+      {showFilterSmall && (
+        <div className="bg-white fixed inset-0 flex flex-col z-10 lg:hidden">
+          <div className="flex justify-between py-10 px-5">
+            <h2 className="text-2xl"> Filter </h2>
+            <div className="" onClick={closeSmallFilter}>
+              <X />
+            </div>
+          </div>
+          <div className="flex-7 overflow-y-auto px-5">
+            <FilterDataProps
+              setData={setSelectBrand}
+              data={selectBrand}
+              allData={Brand}
+              dataName="Brands"
+              dataSelect={visibleMobileBrands}
+              show={showMoreMobileBrand}
+              clickShow={() => setShowMoreMobileBrand((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Sport}
+              dataName="Sports"
+              dataSelect={visibleMobileSport}
+              show={showMoreMobileSport}
+              clickShow={() => setShowMoreMobileSport((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Gender}
+              dataName="Genders"
+              dataSelect={visibleMobileGender}
+              show={showMoreMobileGender}
+              clickShow={() => setShowMoreMobileGender((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Best}
+              dataName="Bests"
+              dataSelect={visibleMobileBest}
+              show={showMoreMobileBest}
+              clickShow={() => setShowMoreMobileBest((prev) => !prev)}
+            />
+            <div className="border-t border-black/20 my-5 h-1"></div>
+
+            <FilterDataProps
+              setData={setSelectStort}
+              data={selectStort}
+              allData={Kids}
+              dataName="Kidss"
+              dataSelect={visibleMobileKids}
+              show={showMoreMobileKids}
+              clickShow={() => setShowMoreMobileKids((prev) => !prev)}
+            />
+          </div>
+          {(selectBrand.length > 0 || selectStort.length > 0) && (
+            <div className="flex-1 flex items-center justify-center gap-3 px-5 text-center">
+              <button
+                onClick={clearFilter}
+                className="border border-black/20 font-medium w-[80%] rounded-4xl py-3 text-sm cursor-pointer"
+              >
+                Clear ({selectBrand.length + selectStort.length})
+              </button>
+              <button
+                onClick={closeSmallFilter}
+                className="bg-black text-white w-[80%] font-medium rounded-4xl py-3 text-sm cursor-pointer"
+              >
+                Apply
+              </button>
+            </div>
+          )}
+        </div>
+      )}
       {/* top full scren */}
       <div className="hidden lg:block ">
         <div className="flex justify-between px-[2%] bg-white py-5">
           <h2 className="text-2xl font-medium">
-            {" "}
             Shop All Sale ({DataProducts.length})
           </h2>
           <div className="flex items-center gap-x-10">
@@ -276,8 +508,8 @@ const ListProducts = () => {
                       className="w-full object-cover"
                       alt=""
                     />
-                    <div className="py-5">
-                      <div className="flex gap-1 pb-2 ">
+                    <div className="py-5 px-2 lg:px-0">
+                      <div className="flex  gap-1 pb-2 ">
                         {e.product.map((e, index) => (
                           <div
                             onMouseEnter={() => {
@@ -285,15 +517,20 @@ const ListProducts = () => {
                               newData[i] = index;
                               setIsProduct(newData);
                             }}
-                            className="w-4 h-4 border border-black/20 cursor-pointer rounded-full"
+                            onClick={() => {
+                              const newData = [...isProduct];
+                              newData[i] = index;
+                              setIsProduct(newData);
+                            }}
+                            className="w-8 h-8 lg:w-4 lg:h-4 border border-black/20 cursor-pointer rounded-full"
                             style={{
                               backgroundColor: getColor(e.color),
                             }}
                           ></div>
                         ))}
                       </div>
-                      <h2 className="text-md font-medium"> {e.title} </h2>
-                      <ul className="flex gap-1 py-1 text-md font-medium text-black/50">
+                      <h2 className="text-md font-medium "> {e.title} </h2>
+                      <ul className="flex gap-1 py-1 flex-wrap text-md font-medium text-black/50">
                         {e.category.map((e, i) => (
                           <li>{e}</li>
                         ))}
@@ -316,7 +553,9 @@ const ListProducts = () => {
                         )}
 
                         <h2 className="text-md font-medium text-green-600">
-                          {productActive.discount} % Off
+                          {productActive.discount !== 0
+                            ? `${productActive.discount} % Off`
+                            : ""}
                         </h2>
                       </div>
                       <h2 className="text-md font-medium text-green-600">
@@ -343,62 +582,3 @@ const ListProducts = () => {
 };
 
 export default ListProducts;
-
-const ListProps = ({
-  click,
-  showName,
-  icon,
-  selected,
-  listData,
-  nameMore,
-  clickMore,
-  setSelect,
-  alldata,
-}) => {
-  const [checked, setChecked] = useState([]);
-  const handleChange = (items) => {
-    setSelect((e) =>
-      e.includes(items) ? e.filter((i) => i !== items) : [...e, items]
-    );
-  };
-
-  return (
-    <div className="border-t  pt-4 border-black/10 text-lg font-medium">
-      {/* Header */}
-      <div className="flex justify-between cursor-pointer" onClick={click}>
-        {showName}
-        {icon ? <ChevronUp /> : <ChevronDown />}
-      </div>
-
-      {/* List Items */}
-      <div className="py-2">
-        {icon &&
-          listData.map((item, i) => (
-            <li
-              key={i}
-              className="text-[16px] py-1 font-medium flex items-start  gap-2 cursor-pointer hover:text-black/80"
-            >
-              <input
-                type="checkbox"
-                checked={selected.includes(item)}
-                onChange={() => handleChange(item)}
-                className="min-w-5 min-h-5 cursor-pointer accent-black"
-              />
-
-              {item}
-            </li>
-          ))}
-
-        {/* Show More / Less Button */}
-        {icon && alldata.length > 4 && (
-          <button
-            onClick={clickMore}
-            className="font-normal mt-2 text-lg text-black/80 cursor-pointer"
-          >
-            {nameMore ? "- Less" : "+ More"}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-};
