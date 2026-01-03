@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiBag1, CiHeart, CiSearch } from "react-icons/ci";
 import { ChevronDown, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Link } from "react-router";
@@ -62,12 +62,6 @@ const NavBar = () => {
             )
           ),
         ];
-
-  useEffect(() => {
-    if (isSearch && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [isSearch]);
 
   useEffect(() => {
     const saved = localStorage.getItem("recentSearches");
