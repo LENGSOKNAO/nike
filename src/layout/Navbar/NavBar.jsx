@@ -124,12 +124,6 @@ const NavBar = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Your search logic here
-    performSearch();
-  };
-
   return (
     <>
       <div className={isSearch ? "hidden" : "hidden lg:block"}>
@@ -177,16 +171,14 @@ const NavBar = () => {
                             <CiSearch />
                           </div>
                           {/* input search */}
-                          <form onSubmit={handleSubmit}>
-                            <input
-                              type="text"
-                              value={isSearching}
-                              onChange={handleSearching}
-                              onKeyDown={handleKeyPress}
-                              className="outline-none border-none text-lg w-full font-medium"
-                              placeholder="Search"
-                            />
-                          </form>
+                          <input
+                            type="text"
+                            value={isSearching}
+                            onChange={handleSearching}
+                            onKeyDown={handleKeyPress}
+                            className="outline-none border-none text-sm lg:text-lg  w-[80%] font-medium"
+                            placeholder="Search"
+                          />
                         </div>
                       </div>
                       <span
