@@ -12,6 +12,7 @@ const MenList = [
 const MenBar = () => {
   return (
     <>
+      <LinkPage />
       <PageMenuProop nav1={"men"} nav2={MenList} />
     </>
   );

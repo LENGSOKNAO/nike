@@ -39,7 +39,7 @@ const listData = [
   },
 ];
 
-const LinkWomen = () => {
+const LinkPage = () => {
   const [currentText, setCurrentText] = useState(0);
   const timer = useRef(null);
   const started = useRef(false);
@@ -81,4 +81,4 @@ const LinkWomen = () => {
   );
 };
 
-export default LinkWomen;
+export default LinkPage;

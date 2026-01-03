@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "../../layout/Layout";
-import LinkWomen from "../../components/women/LinkWomen";
+import LinkPage from "../../components/props/LinkPage";
 import ListProducts from "../../components/sale/ListProducts";
 const Sale = () => {
   return (
     <Layout>
-      <LinkWomen />
+      <LinkPage />
       <ListProducts />
     </Layout>
   );

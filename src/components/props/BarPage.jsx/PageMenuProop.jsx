@@ -8,10 +8,10 @@ const PageMenuProop = ({ nav1, nav2 }) => {
         <div className=" h-a w-[35%] flex justify-start mb-2">
           <Link to="">{nav1}</Link>
         </div>
-        <div className=" h-auto w-full lg:w-[65%] ">
-          <ul className="flex gap-x-10  ">
+        <div className="w-full hide-scrollbar-x lg:w-[65%] overflow-x-auto lg:overflow-x-visible   ">
+          <ul className="flex gap-x-10 font-medium text-lg whitespace-nowrap">
             {nav2.map((e, i) => (
-              <li>{e.name}</li>
+              <li key={i}>{e.name}</li>
             ))}
           </ul>
         </div>
