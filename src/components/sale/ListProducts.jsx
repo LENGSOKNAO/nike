@@ -280,9 +280,15 @@ const ListProducts = () => {
           {Shose.map((e, i) => (
             <li
               key={i}
-              className="shrink-0 font-medium text-[1rem] py-5 hover:text-black/60"
+              className={`shrink-0 font-medium text-[1rem] py-5 cursor-pointer 
+                 ${selectStort.includes(e) ? "text-black/60" : ""}`}
+              onClick={() => {
+                setSelectStort((ca) =>
+                  ca.includes(e) ? ca.filter((f) => f !== e) : [...ca, e]
+                );
+              }}
             >
-              <Link>{e}</Link>
+              {e}
             </li>
           ))}
         </ul>
@@ -411,7 +417,21 @@ const ListProducts = () => {
               <div className="">
                 <ul className="px-10">
                   {Shose.map((e, i) => (
-                    <li className="text-[16px] py-1 font-medium">{e}</li>
+                    <li
+                      key={i}
+                      className={`text-[16px] py-1 font-medium cursor-pointer underline-offset-4  ${
+                        selectStort.includes(e) ? "underline" : ""
+                      }`}
+                      onClick={() => {
+                        setSelectStort((ca) =>
+                          ca.includes(e)
+                            ? ca.filter((f) => f !== e)
+                            : [...ca, e]
+                        );
+                      }}
+                    >
+                      {e}
+                    </li>
                   ))}
                   {/* brand */}
                   <ListProps

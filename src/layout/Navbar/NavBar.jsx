@@ -185,7 +185,7 @@ const NavBar = () => {
                             {/* input search */}
                             <input
                               ref={searchInputRef}
-                              type="search"  
+                              type="search"
                               value={isSearching}
                               onChange={handleSearching}
                               onKeyDown={handleKeyPress}
@@ -370,7 +370,7 @@ const NavBar = () => {
 
                                 {/* THIS is the scrollable area - everything below header scrolls */}
                                 <div className="h-full overflow-y-auto  pb-20">
-                                  <h2 className="text-2xl font-medium py-4 cursor-pointer">
+                                  <h2 className="text-xl font-medium py-4 cursor-pointer">
                                     <Link
                                       to={e.link}
                                       onClick={closeSamllScreen}
@@ -382,12 +382,12 @@ const NavBar = () => {
                                   {e.list.map((category, idx) => (
                                     <div
                                       key={idx}
-                                      className="my-2 text-lg font-normal"
+                                      className="my-1 text-lg font-normal"
                                     >
                                       {category.listSub.map((sub, subIdx) => (
                                         <div
                                           key={subIdx}
-                                          className="text-xl font-medium cursor-pointer"
+                                          className="text-lg text-black/80 font-medium cursor-pointer"
                                         >
                                           <h2
                                             onClick={() =>
@@ -416,7 +416,18 @@ const NavBar = () => {
                                                     key={idSub}
                                                     className="text-sm font-medium text-gray-600 hover:text-black py-2"
                                                   >
-                                                    <h2>{item.name}</h2>
+                                                    <h2>
+                                                      <Link
+                                                        to={`/sale?q=${encodeURIComponent(
+                                                          item.link
+                                                        )}`}
+                                                        onClick={() =>
+                                                          isHoverMenu(false)
+                                                        }
+                                                      >
+                                                        {item.name}
+                                                      </Link>
+                                                    </h2>
                                                   </div>
                                                 )
                                               )}
@@ -482,7 +493,14 @@ const NavBar = () => {
                                     {e.listSub.map((e, i) => (
                                       <div key={i}>
                                         <p className="text-sm text-gray-600 hover:text-black py-1 font-medium">
-                                          <Link>{e.name}</Link>
+                                          <Link
+                                            to={`/sale?q=${encodeURIComponent(
+                                              e.name
+                                            )}`}
+                                            onClick={() => isHoverMenu(false)}
+                                          >
+                                            {e.name}
+                                          </Link>
                                         </p>
                                       </div>
                                     ))}
