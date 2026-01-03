@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import ImgBanner from "../../assets/bannerHome/banner1.jpg";
+import PageMenuProop from "../props/BarPage.jsx/PageMenuProop";
 
 const MenList = [
   { name: "Shoes", Link: "" },
@@ -11,18 +12,7 @@ const MenList = [
 const MenBar = () => {
   return (
     <>
-      <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-10 cursor-pointer overflow-hidden">
-        <div className=" h-a w-[40%] flex justify-start mb-2">
-          <Link to="">Men</Link>
-        </div>
-        <div className=" h-auto w-full lg:w-[60%] ">
-          <ul className="flex gap-x-10  ">
-            {MenList.map((e, i) => (
-              <li>{e.name}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <PageMenuProop nav1={"men"} nav2={MenList} />
     </>
   );
 };
