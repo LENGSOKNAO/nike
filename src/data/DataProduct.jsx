@@ -11,6 +11,7 @@ export const DataProducts = [
     category: ["Men", "Hoodies and Pullovers", "Lifestyle", "Warm Weather"],
     product: [
       {
+        id: 1,
         img: product1,
         price: 65.0,
         discount: 30,
@@ -18,6 +19,7 @@ export const DataProducts = [
         color: "Black",
       },
       {
+        id: 2,
         img: product2,
         price: 65.0,
         discount: 30,
@@ -25,6 +27,7 @@ export const DataProducts = [
         color: "Gray",
       },
       {
+        id: 3,
         img: product1,
         price: 65.0,
         discount: 30,
@@ -40,6 +43,7 @@ export const DataProducts = [
     category: ["Men", "Shoes", "Jordan", "Basketball", "Lifestyle"],
     product: [
       {
+        id: 4,
         img: product2,
         price: 180.0,
         discount: 0,
@@ -47,6 +51,7 @@ export const DataProducts = [
         color: "Black/Red",
       },
       {
+        id: 5,
         img: product1,
         price: 180.0,
         discount: 0,
@@ -62,6 +67,7 @@ export const DataProducts = [
     category: ["Men", "Tops and T-Shirts", "Running", "Training & Gym"],
     product: [
       {
+        id: 6,
         img: product1,
         price: 35.0,
         discount: 20,
@@ -69,6 +75,7 @@ export const DataProducts = [
         color: "Blue",
       },
       {
+        id: 7,
         img: product2,
         price: 35.0,
         discount: 20,
@@ -84,6 +91,7 @@ export const DataProducts = [
     category: ["Men", "Shorts", "Compression and Baselayer", "Training & Gym"],
     product: [
       {
+        id: 8,
         img: product2,
         price: 30.0,
         discount: 15,
@@ -91,6 +99,7 @@ export const DataProducts = [
         color: "Black",
       },
       {
+        id: 9,
         img: product1,
         price: 30.0,
         discount: 15,
@@ -106,6 +115,7 @@ export const DataProducts = [
     category: ["Unisex", "Shoes", "Outdoor", "Hiking", "Cold Weather"],
     product: [
       {
+        id: 10,
         img: product1,
         price: 150.0,
         discount: 25,
@@ -113,6 +123,7 @@ export const DataProducts = [
         color: "Brown",
       },
       {
+        id: 11,
         img: product2,
         price: 150.0,
         discount: 25,
@@ -128,6 +139,7 @@ export const DataProducts = [
     category: ["Women", "Pants and Tights", "Yoga", "Lifestyle"],
     product: [
       {
+        id: 12,
         img: product2,
         price: 90.0,
         discount: 40,
@@ -135,6 +147,7 @@ export const DataProducts = [
         color: "Black",
       },
       {
+        id: 13,
         img: product1,
         price: 90.0,
         discount: 40,
@@ -150,6 +163,7 @@ export const DataProducts = [
     category: ["Men", "Jackets & Vests", "Lifestyle", "Wet Weather Conditions"],
     product: [
       {
+        id: 14,
         img: product1,
         price: 120.0,
         discount: 10,
@@ -157,6 +171,7 @@ export const DataProducts = [
         color: "Olive",
       },
       {
+        id: 15,
         img: product2,
         price: 120.0,
         discount: 10,
@@ -172,6 +187,7 @@ export const DataProducts = [
     category: ["Men", "Tops and T-Shirts", "Basketball"],
     product: [
       {
+        id: 16,
         img: product2,
         price: 110.0,
         discount: 0,
@@ -187,6 +203,7 @@ export const DataProducts = [
     category: ["Men", "Swimwear", "Swimming", "Warm Weather"],
     product: [
       {
+        id: 17,
         img: product1,
         price: 45.0,
         discount: 35,
@@ -202,6 +219,7 @@ export const DataProducts = [
     category: ["Women", "Tracksuits", "Lifestyle"],
     product: [
       {
+        id: 18,
         img: product2,
         price: 100.0,
         discount: 20,
@@ -209,6 +227,7 @@ export const DataProducts = [
         color: "Pink",
       },
       {
+        id: 19,
         img: product1,
         price: 100.0,
         discount: 20,
@@ -224,6 +243,7 @@ export const DataProducts = [
     category: ["Men", "Tops and T-Shirts", "Golf"],
     product: [
       {
+        id: 20,
         img: product1,
         price: 60.0,
         discount: 15,
@@ -239,6 +259,7 @@ export const DataProducts = [
     category: ["Unisex", "Socks", "Running"],
     product: [
       {
+        id: 21,
         img: product2,
         price: 18.0,
         discount: 10,
@@ -254,6 +275,7 @@ export const DataProducts = [
     category: ["Women", "Jackets & Vests", "Running", "Cold Weather"],
     product: [
       {
+        id: 22,
         img: product1,
         price: 110.0,
         discount: 25,
@@ -269,6 +291,7 @@ export const DataProducts = [
     category: ["Men", "Pants and Tights", "Basketball", "Lifestyle"],
     product: [
       {
+        id: 23,
         img: product2,
         price: 75.0,
         discount: 20,
@@ -284,6 +307,7 @@ export const DataProducts = [
     category: ["Men", "Shoes", "Skateboarding"],
     product: [
       {
+        id: 24,
         img: product1,
         price: 95.0,
         discount: 15,

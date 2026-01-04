@@ -31,7 +31,7 @@ const Footer = () => {
           <div className="flex gap-10">
             {listFooter.map((e, i) => (
               <div className="" key={i}>
-                <Link to={e.links}>
+                <Link to={`/sale?q=${encodeURIComponent(e)}`}>
                   <SmallText text={e.title} />
                 </Link>
               </div>
@@ -52,7 +52,10 @@ const Footer = () => {
                     </h3>
                     <div className="max-h-40 group-hover:max-h-[1200px] overflow-hidden duration-700 ease-in-out transition-all">
                       {e.list.map((item, index) => (
-                        <Link to={item.links} key={i}>
+                        <Link
+                          to={`/sale?q=${encodeURIComponent(item.title)}`}
+                          key={i}
+                        >
                           <h2 className="text-md font-medium text-black/60 hover:text-black py-2 ">
                             {item.title}
                           </h2>
