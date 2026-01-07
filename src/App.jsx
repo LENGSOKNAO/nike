@@ -9,6 +9,7 @@ import UsingProps from "./testing/UsingProps";
 import Kids from "./screen/kids/Kids";
 import ListProduct from "./testing/product/ListProduct";
 import ProductDetial from "./testing/product/ProductDetial";
+import Jordan from "./screen/jordan/Jordan";
 // import Kidproop from "./testing/kideproop";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/men" element={<MenHome />} />
         <Route path="/women" element={<WomenHome />} />
         <Route path="/kids" element={<Kids />} />
+        <Route path="/jordan" element={<Jordan />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="/testing" element={<ListProduct />} />
         <Route path="/testing/detail/:id" element={<ProductDetial />} />

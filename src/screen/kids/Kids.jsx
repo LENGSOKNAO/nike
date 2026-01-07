@@ -4,6 +4,8 @@ import React from "react";
 import BannerKid from "../../components/kids/BannerKid";
 import FeatureKId from "../../components/kids/FeatureKId";
 import FeatureKid2 from "../../components/kids/FeatureKid2";
+import BannerKid2 from "../../components/kids/BannerKid2";
+import BannerKid3 from "../../components/kids/BannerKid3";
 
 const Kids = () => {
   return (
@@ -12,6 +14,8 @@ const Kids = () => {
       <BannerKid />
       <FeatureKId />
       <FeatureKid2 />
+      <BannerKid2 />
+      <BannerKid3 />
     </Layout>
   );
 };
