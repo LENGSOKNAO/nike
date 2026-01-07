@@ -9,6 +9,7 @@ import UsingProps from "./testing/UsingProps";
 import Kids from "./screen/kids/Kids";
 import ListProduct from "./testing/product/ListProduct";
 import ProductDetial from "./testing/product/ProductDetial";
+// import Kidproop from "./testing/kideproop";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/sale" element={<Sale />} />
         <Route path="/testing" element={<ListProduct />} />
         <Route path="/testing/detail/:id" element={<ProductDetial />} />
+        {/* <Route path="/testing/Kidproop" element={<Kidproop />} /> */}
       </Routes>
     </BrowserRouter>
   );

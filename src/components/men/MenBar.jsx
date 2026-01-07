@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router";
-import ImgBanner from "../../assets/bannerHome/banner1.jpg";
-import PageMenuProop from "../props/BarPage.jsx/PageMenuProop";
+import LinkPage from "../props/LinkPage.jsx";
+import PageMenuProop from "../props/BarPage/PageMenuProop.jsx";
+
 
 const MenList = [
   { name: "Shoes", Link: "" },
@@ -11,10 +11,10 @@ const MenList = [
 
 const MenBar = () => {
   return (
-    <>
+    <div>
       <LinkPage />
       <PageMenuProop nav1={"men"} nav2={MenList} />
-    </>
+    </div>
   );
 };
 

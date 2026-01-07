@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const PageMenuProop = ({ nav1, nav2 }) => {
   return (
     <>
-      <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-10 cursor-pointer overflow-hidden">
+      <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-2 cursor-pointer overflow-hidden sm:px-10">
         <div className=" h-a w-[35%] flex justify-start mb-2">
           <Link to="">{nav1}</Link>
         </div>

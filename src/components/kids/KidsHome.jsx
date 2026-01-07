@@ -1,5 +1,5 @@
 import React from "react";
-import PageMenuProop from "../props/BarPage.jsx/PageMenuProop";
+import PageMenuProop from "../props/BarPage/PageMenuProop";
 import LinkPage from "../props/LinkPage";
 const menuList = [
   { name: "Shop by Age", link: "" },
