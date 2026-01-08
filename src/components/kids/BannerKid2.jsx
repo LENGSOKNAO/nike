@@ -12,7 +12,7 @@ const BannerKid2 = () => {
           <img
             src={Imge}
             alt=""
-            className="w-full max-h-[620px] overflow-hidden lg:w-[60%] "
+            className="w-full max-h-155 overflow-hidden lg:w-[60%] "
           />
         </div>
       </div>

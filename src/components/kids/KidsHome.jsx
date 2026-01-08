@@ -13,7 +13,7 @@ const KidsHome = () => {
   return (
     <div>
       <LinkPage />
-      <PageMenuProop nav1={"Kids"} nav2={menuList} />
+      <PageMenuProop nav1={"Kids"} isText={true} nav2={menuList} />
     </div>
   );
 };

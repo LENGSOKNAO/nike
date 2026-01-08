@@ -6,7 +6,13 @@ const PageMenuProop = ({ nav1, nav2, logo, isText }) => {
     <>
       <div className=" lg:flex  h-20 w-100% items-center text-xl font-medium px-2 cursor-pointer overflow-hidden sm:px-10">
         <div className="h-auto w-[35%] flex justify-start mb-2">
-          <Link to="">{isText ? nav1 : <img src={logo} alt="logo" />}</Link>
+          <Link to="">
+            {isText ? (
+              nav1
+            ) : (
+              <img src={logo} alt="logo" className="w-full h-10" />
+            )}
+          </Link>
         </div>
 
         <div className="w-full hide-scrollbar-x lg:w-[65%] overflow-x-auto lg:overflow-x-visible   ">

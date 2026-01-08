@@ -14,7 +14,7 @@ const HeaderMen = () => {
             forever king
           </h1>
           <p>There can only be one crown.</p>
-          <button className="w-[80px] h-[40px] bg-black text-white rounded-full">
+          <button className="w-20 h-10 bg-black text-white rounded-full">
             Shop
           </button>
         </div>

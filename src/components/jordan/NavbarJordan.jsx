@@ -14,7 +14,7 @@ const NavList = [
 const NavbarJordan = () => {
   return (
     <div>
-      <PageMenuProop logo={Jordan} isText={fale} Nav2={NavList} />
+      <PageMenuProop logo={Jordan} isText={false} nav2={NavList} />
     </div>
   );
 };
