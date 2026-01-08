@@ -8,3 +8,6 @@
 .hide-scrollbar-x {
   scrollbar-width: none;
 }
+.bg-jordan {
+  @apply bg-[#111];
+}
