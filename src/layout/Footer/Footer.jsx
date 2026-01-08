@@ -4,11 +4,12 @@ import { dataFooter2 } from "../../model/ListFooter2";
 import { dataFooter3 } from "../../model/ListFooter3";
 import { listFooter } from "../../model/ListFooter";
 import logo from "../../assets/logo.png";
+import logoBlack from "../../assets/logobartop.png";
 import { useState } from "react";
 import { BiWorld } from "react-icons/bi";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const Footer = () => {
+const Footer = ({ bg }) => {
   const [isMenu, setIsMenu] = useState(false);
   const [Menu, setMenu] = useState(false);
 
@@ -21,11 +22,15 @@ const Footer = () => {
   };
 
   return (
-    <footer className="pb-15">
+    <footer className={` ${bg ? "bg-black/90 text-white" : "bg-white"} pb-15 `}>
       {/* footer 1 */}
       <div className="px-5">
         <div className="flex justify-center">
-          <img src={logo} className="w-25 md:w-30 py-10" alt="" />
+          {bg ? (
+            <img src={logoBlack} className="w-25 md:w-30 py-10" alt="" />
+          ) : (
+            <img src={logo} className="w-25 md:w-30 py-10" alt="" />
+          )}
         </div>
         <div className="md:flex flex-col items-center justify-center">
           <div className="flex gap-10">
@@ -56,7 +61,13 @@ const Footer = () => {
                           to={`/sale?q=${encodeURIComponent(item.title)}`}
                           key={i}
                         >
-                          <h2 className="text-md font-medium text-black/60 hover:text-black py-2 ">
+                          <h2
+                            className={`text-md font-medium ${
+                              bg
+                                ? "text-white/70 hover:text-white"
+                                : "text-black/60 hover:text-black "
+                            } py-2`}
+                          >
                             {item.title}
                           </h2>
                         </Link>
@@ -85,7 +96,15 @@ const Footer = () => {
                 >
                   {e.list.map((e, i) => (
                     <div className="">
-                      <h2 className="text-md py-2">{e.title}</h2>
+                      <h2
+                        className={`${
+                          bg
+                            ? "text-white/70 hover:text-white"
+                            : "text-black/60 hover:text-black "
+                        }text-md py-2`}
+                      >
+                        {e.title}
+                      </h2>
                     </div>
                   ))}
                 </div>
@@ -95,7 +114,7 @@ const Footer = () => {
         </div>
       </>
       {/* broder  */}
-      <div className=" hidden md:block border-t-1 border-black/10 "></div>
+      <div className=" hidden md:block border-t border-black/10 "></div>
       {/* footer 3 */}
       <div className="hidden md:block">
         <div className="grid grid-cols-5 justify-items-center  py-10">
@@ -105,7 +124,13 @@ const Footer = () => {
               <div className="">
                 {e.list.map((e, i) => (
                   <div className="py-1">
-                    <span className="text-sm font-medium text-black/60 hover:text-black">
+                    <span
+                      className={`text-sm font-medium ${
+                        bg
+                          ? "text-white/70 hover:text-white"
+                          : "text-black/60 hover:text-black"
+                      }`}
+                    >
                       <Link>{e.title}</Link>
                     </span>
                   </div>
@@ -113,20 +138,35 @@ const Footer = () => {
               </div>
             </div>
           ))}
-          <div className="text-black/50 text-sm font-medium">
-            <div className="flex justify-center items-center">
+          <div
+            className={`${
+              bg
+                ? "text-white/70 hover:text-white"
+                : "text-black/60 hover:text-black"
+            } text-sm font-medium`}
+          >
+            <div className="flex justify-center gap-1 items-center">
               <BiWorld />
-              <span className="text-black/70 text-sm">Cambodia</span>
+              <span
+                className={`${
+                  bg
+                    ? "text-white/70 hover:text-white"
+                    : "text-black/60 hover:text-black"
+                }text-sm cursor-pointer`}
+              >
+                Cambodia
+              </span>
             </div>
           </div>
         </div>
       </div>
+
       <div className="md:hidden px-5">
-        <div className="border-t-1 border-black/10">
+        <div className="border-t border-black/10">
           {dataFooter3.map((e, i) => (
             <div
               onClick={() => setMenu(Menu === i ? null : i)}
-              className="pt-5 border-b-1 border-black/10 border-black/10 border-black/10 duration-700 ease-in-out transition-all"
+              className="pt-5 border-b border-black/10 duration-700 ease-in-out transition-all"
             >
               <h2 className="text-lg font-medium cursor-pointer flex items-center justify-between">
                 {e.menTitle}
@@ -139,7 +179,13 @@ const Footer = () => {
                 }`}
               >
                 {e.list.map((e, i) => (
-                  <div className="text-sm text-black/60 font-medium hover:text-black py-2">
+                  <div
+                    className={`text-sm   ${
+                      bg
+                        ? "text-white/70 hover:text-white"
+                        : "text-black/60 hover:text-black"
+                    } font-medium  py-2`}
+                  >
                     <Link>
                       <span>{e.title}</span>
                     </Link>
@@ -151,7 +197,13 @@ const Footer = () => {
         </div>
       </div>
       {/* name of developer */}
-      <h2 className="text-sm text-black/60 py-2 px-4 w-[70%]">
+      <h2
+        className={`text-sm ${
+          bg
+            ? "text-white/70 hover:text-white"
+            : "text-black/60 hover:text-black"
+        } text-black/60 py-2 px-4 w-[70%]`}
+      >
         © 2026 Soknao and Seyha. Developed by Soknao and Seyha. All rights
         reserved
       </h2>

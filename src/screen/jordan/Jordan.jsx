@@ -4,9 +4,9 @@ import LinkPage from "../../components/props/LinkPage.jsx";
 
 const Jordan = () => {
   return (
-    <div>
-      <Layout>
-        <LinkPage />
+    <div className="">
+      <Layout bg={true} text={"text-white"}>
+        <LinkPage color={true} />
       </Layout>
     </div>
   );

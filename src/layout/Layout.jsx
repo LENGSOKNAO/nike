@@ -2,12 +2,12 @@ import React from "react";
 import NavBar from "./Navbar/NavBar";
 import Footer from "./Footer/Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, bg, text }) => {
   return (
     <div className="relative">
-      <NavBar />
+      <NavBar bg={bg} text={text} />
       {children}
-      <Footer />
+      <Footer bg={bg} />
     </div>
   );
 };

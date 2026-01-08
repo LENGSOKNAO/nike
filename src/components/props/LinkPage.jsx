@@ -39,7 +39,7 @@ const listData = [
   },
 ];
 
-const LinkPage = () => {
+const LinkPage = ({ color }) => {
   const [currentText, setCurrentText] = useState(0);
   const timer = useRef(null);
   const started = useRef(false);
@@ -47,12 +47,7 @@ const LinkPage = () => {
   const autoPlay = () => {
     // function ()
     setCurrentText((t) => (t + 1) % listData.length);
-    // (0 + 1) % 6 = 1
-    // (1 + 1) % 6 = 2
-    // (2 + 1) % 6 = 3
-    // (3 + 1) % 6 = 4
-    // (4 + 1) % 6 = 5
-    // (5 + 1) % 6 = 0
+
     timer.current = setTimeout(autoPlay, 6000);
   };
 
@@ -62,7 +57,11 @@ const LinkPage = () => {
   }
 
   return (
-    <div className="bg-gray-200 py-5 overflow-hidden">
+    <div
+      className={`${
+        color ? "bg-black text-white" : "bg-gray-200"
+      } py-5 overflow-hidden`}
+    >
       <div
         className={`flex text-center transition-all duration-1000 ease-in-out `}
         style={{
@@ -71,7 +70,7 @@ const LinkPage = () => {
       >
         {listData.map((e, i) => (
           <div className=" w-full shrink-0" key={i}>
-            <h2 className="text-sm underline  font-medium">
+            <h2 className={` ${color ? "" : "underline"} text-sm  font-medium`}>
               <Link>{e.title}</Link>
             </h2>
           </div>

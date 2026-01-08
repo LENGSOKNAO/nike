@@ -3,10 +3,10 @@
 - navbar // done
 - footer // done
 - home page // done
-- list product
+- list product // done
 - bag
-- favoriute
-- checkout
+- favoriute 
+- checkout 
 - payment
 
 <!-- seyha -->
