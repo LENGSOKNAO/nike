@@ -3,6 +3,8 @@ import Layout from "../../layout/Layout.jsx";
 import LinkPage from "../../components/props/LinkPage.jsx";
 import NavbarJordan from "../../components/jordan/NavbarJordan.jsx";
 import SlideJordan from "../../components/jordan/SlideJordan.jsx";
+import Feature1 from "../../components/jordan/Feature1.jsx";
+import SliderProductJordan from "../../components/jordan/SliderProductJordan.jsx";
 
 const Jordan = () => {
   return (
@@ -12,6 +14,8 @@ const Jordan = () => {
         <div className="bg-jordan w-full h-auto text-white">
           <NavbarJordan />
           <SlideJordan />
+          <Feature1 />
+          <SliderProductJordan />
         </div>
       </Layout>
     </div>

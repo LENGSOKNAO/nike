@@ -12,7 +12,7 @@ const SlideJordan = () => {
       <div className=" mt-10 p-5 place-items-center ">
         <div className="flex flex-col gap-3  items-center">
           <h4>Luka 5</h4>
-          <h1 className="text-3xl  font-Sekuya uppercase sm:text-5xl">
+          <h1 className="text-xl  font-Sekuya uppercase sm:text-3xl">
             Bad Luka, Nice Shoes
           </h1>
           <p>360° Control. Full-Length Zoom. Nice Shoes.</p>
