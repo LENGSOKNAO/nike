@@ -148,7 +148,7 @@ const NavBar = ({ bg, text }) => {
                 className={`flex items-center justify-center ${
                   i === 0
                     ? ""
-                    : "before:content-[''] before:block before:w-[1px] before:h-3  before:bg-black"
+                    : "before:content-[''] before:block before:w-px before:h-3  before:bg-black"
                 }`}
               >
                 <p className="text-[14px] font-semibold px-2">{e.title} </p>
