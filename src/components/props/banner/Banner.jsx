@@ -143,11 +143,11 @@ const Banner = ({ data }) => {
                 />
                 {/* data of banner */}
                 <div className="absolute bottom-15 text-center text-white w-[70%] sm:w-[70%] md:w-[50%] xl:w-[100vh]">
-                  <BigText text={e.title} />
+                  {e.title ? <BigText text={e.title} /> : ""}
                   <div className="py-5">
-                    <SmallText text={e.subTitle} />
+                    {e.subTitle ? <SmallText text={e.subTitle} /> : ""}
                   </div>
-                  <BtnWith text={e.btnName} />
+                  {e.btnName ? <BtnWith text={e.btnName} /> : ""}
                 </div>
               </div>
             </>

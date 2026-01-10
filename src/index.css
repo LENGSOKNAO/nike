@@ -12,6 +12,7 @@
 .bg-jordan {
   @apply bg-[#111];
 }
+
 /* Nike-style overlay scrollbar */
 
 .nike-scroll::-webkit-scrollbar {
