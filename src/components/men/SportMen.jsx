@@ -18,7 +18,7 @@ const IconButton = ({ children }) => (
   </div>
 );
 export const Sport = [
-  { img: sp1, namebtn: "shop", link: "" },  
+  { img: sp1, namebtn: "shop", link: "" },
   { img: sp2, namebtn: "shop", link: "" },
   { img: sp3, namebtn: "shop", link: "" },
   { img: sp4, namebtn: "shop", link: "" },
