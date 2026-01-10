@@ -7,7 +7,7 @@ const MenBar2 = () => {
     <div className="mt-15s">
       <h1 className="p-5 font-medium text-2xl sm:px-10">Give Sport</h1>
 
-      <div className="relative w-full h-[450px]">
+      <div className="relative w-full h-112.5">
         {/* Image */}
         <img
           src={img}

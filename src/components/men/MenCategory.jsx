@@ -18,7 +18,7 @@ const MenCategory = () => {
     sm:grid sm:grid-cols-3 sm:overflow-x-hidden "
       >
         {ListCat.map((e, i) => (
-          <div className="min-w-[350px] sm:min-w-0">
+          <div className="min-w-87.5 sm:min-w-0">
             <img src={e.images} alt="" className="w-full h-110 object-cover " />
             <p className="mt-2 text-lg ">{e.nameCat}</p>
           </div>
