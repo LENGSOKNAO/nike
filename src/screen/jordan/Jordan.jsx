@@ -5,6 +5,7 @@ import NavbarJordan from "../../components/jordan/NavbarJordan.jsx";
 import SlideJordan from "../../components/jordan/SlideJordan.jsx";
 import Feature1 from "../../components/jordan/Feature1.jsx";
 import SliderProductJordan from "../../components/jordan/SliderProductJordan.jsx";
+import Feature2 from "../../components/jordan/Feature2.jsx";
 
 const Jordan = () => {
   return (
@@ -16,6 +17,7 @@ const Jordan = () => {
           <SlideJordan />
           <Feature1 />
           <SliderProductJordan />
+          <Feature2 />
         </div>
       </Layout>
     </div>
