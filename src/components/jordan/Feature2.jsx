@@ -12,10 +12,10 @@ const Feature2 = () => {
     <>
       <div className="mx-5 uppercase">
         <h1 className="my-10 text-2xl">shop by gender</h1>
-        <div className="w-full h-full flex gap-x-3 lg:grid lg:grid-cols-3 overflow-x-scroll ">
+        <div className="w-full h-full flex gap-x-3 lg:grid lg:grid-cols-3 overflow-x-auto overscroll-x-contain nike-scroll bg-transparent xl:overflow-hidden  ">
           {FtList2.map((e, index) => (
             <div className="min-w-100">
-              <img key={index} src={e.img} alt="" className="" />
+              <img key={index} src={e.img} alt="" />
               <h2 className="p-2 text-lg">{e.name}</h2>
             </div>
           ))}
